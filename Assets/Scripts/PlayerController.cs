@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 	private Rigidbody2D rb;
-	public float speed = 10f;
+	public float speed = 15f;
 	public float jumpSpeed = 1f;
 	public float maxVelocityX = 8f;
 	public float movementXEasing = 0.2f;
@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour {
 	private Timer jumpTimer;
 
 	// Use this for initialization
+	public Vector3 getposition(){
+		return transform.position;
+	}
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 		jumpTimer = GetComponent<Timer> ();
@@ -80,6 +83,7 @@ public class PlayerController : MonoBehaviour {
 		Vector2 moveX = new Vector2(xSpeed, 0);     
 		Vector2 moveY = new Vector2(0, jSpeed);   
 
+		// add force to rigidbody for horizontal movement
 		rb.AddForce(moveX, ForceMode2D.Force);
 		if (Mathf.Abs (rb.velocity.x) > maxVelocityX) {
 			if (rb.velocity.x > 0) {
@@ -91,6 +95,7 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
+		// add imulse force to rigidbody for vertical movement
 		rb.AddForce(moveY, ForceMode2D.Impulse);
 	}
 }

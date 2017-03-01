@@ -2,19 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class easy_enemy : MonoBehaviour {
+public class horizon_plateform : MonoBehaviour {
+
 	public Vector3 pos;
 	private int walkstate;
 	public float leftborder,rightborder,speed;
-	private Collider2D coll;
-
-	void OnTriggerEnter2D(Collider2D Coll)
-	{
-		if (Coll.gameObject.name == "Player") {
-			Destroy(Coll.gameObject);
-		}
-	}
-
 
 	void Start () {
 		walkstate = 1;

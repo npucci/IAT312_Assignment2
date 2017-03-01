@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //test
-public class PlayerController : MonoBehaviour {
+public class Enemy : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

@@ -28,3 +28,11 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+Assets/Animations.meta
+
+*.meta
+
+Assets/Animations.meta
+
+*.meta

@@ -9,17 +9,21 @@ public class PlayerController : MonoBehaviour {
 	public float maxVelocityX = 8f;
 	public float movementXEasing = 0.2f;
 
+	private SpriteRenderer sr;
+	private Animator anim;
 	private bool movingR = false;
 	private bool movingL = false;
 	private bool jumping = false;
 	private Timer jumpTimer;
 
-	// Use this for initialization
-	public Vector3 getposition(){
-		return transform.position;
-	}
+
+
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
+		sr = GetComponent<SpriteRenderer> ();
+		sr.flipX = true;
+		anim = GetComponent<Animator> ();
+		anim.CrossFade("player_idle", 0f);
 		jumpTimer = GetComponent<Timer> ();
 		jumpTimer.setTimer(0.1f);
 	}
@@ -28,20 +32,29 @@ public class PlayerController : MonoBehaviour {
 		//Player's movement based on WASD keys and Space Bar
 		if (Input.GetKeyDown (KeyCode.D)) {
 			movingR = true;
+			anim.CrossFade("player_run", 0f);
+
 		} else if (Input.GetKeyDown (KeyCode.A)) {
 			movingL = true;
+			anim.CrossFade("player_run", 0f);
 		} else if (Input.GetKeyUp (KeyCode.D)) {
 			movingR = false;
+			anim.CrossFade ("player_idle", 0f);
 		} else if (Input.GetKeyUp (KeyCode.A)) {
 			movingL = false;
+			anim.CrossFade ("player_idle", 0f);
 		} 
 
 		if (Input.GetKeyDown (KeyCode.Space) && !jumping) {
 			jumping = true;
 			jumpTimer.startTimer();
+			anim.CrossFade ("player_jump", 0f);
 		}
 
 		if(jumpTimer.stopped() && rb.velocity.y == 0) {
+			if (jumping && !movingR && !movingL) {
+				anim.CrossFade ("player_idle", 0f);
+			}
 			jumping = false;
 		}
 
@@ -53,10 +66,13 @@ public class PlayerController : MonoBehaviour {
 
 		if (movingR) {
 			xSpeed = speed;
+			sr.flipX = true;
+
 		} 
 
 		else if (movingL) {
 			xSpeed = -speed;
+			sr.flipX = false;
 		} 
 
 		// if player is not moving, slow down and stop
@@ -97,5 +113,10 @@ public class PlayerController : MonoBehaviour {
 
 		// add imulse force to rigidbody for vertical movement
 		rb.AddForce(moveY, ForceMode2D.Impulse);
+	}
+
+	// Use this for initialization
+	public Vector3 getposition(){
+		return transform.position;
 	}
 }

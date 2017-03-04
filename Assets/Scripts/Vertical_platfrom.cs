@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Vertical_platfrom : MonoBehaviour {
 
-	public Vector3 pos;
+	private Vector3 pos;
 	private int walkstate;
 	public float topborder,bottomborder,speed;
 

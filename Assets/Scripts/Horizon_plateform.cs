@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class horizon_plateform : MonoBehaviour {
+public class Horizon_plateform : MonoBehaviour {
 
-	public Vector3 pos;
+	private Vector3 pos;
 	private int walkstate;
 	public float leftborder,rightborder,speed;
 

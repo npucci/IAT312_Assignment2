@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Start () {
+		Debug.Log ("here");
 		rb = GetComponent<Rigidbody2D> ();
 		sr = GetComponent<SpriteRenderer> ();
 		sr.flipX = true;
@@ -39,10 +40,6 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update () {
-        if (enabledMove == false) {
-            return;
-        }
-
 		//Player's movement based on WASD keys and Space Bar
 		if (Input.GetKeyDown (KeyCode.D)) {
 			movingR = true;

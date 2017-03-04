@@ -18,7 +18,9 @@ public class PlayerController : MonoBehaviour {
 	private bool jumping = false;
 	private Timer jumpTimer;
 
-
+	public Vector3 getposition(){
+		return transform.position;
+	}
 
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
@@ -121,8 +123,5 @@ public class PlayerController : MonoBehaviour {
 		rb.AddForce(moveY, ForceMode2D.Impulse);
 	}
 
-	// Use this for initialization
-	public Vector3 getposition(){
-		return transform.position;
-	}
+
 }

@@ -14,6 +14,11 @@ public class PlayerBehavoir : MonoBehaviour {
 	private bool jumping = false;
 	private Timer jumpTimer;
 
+	//for enemy to get player position function
+	public Vector3 getposition(){
+		return transform.position;
+	}
+
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();

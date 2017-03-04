@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour {
 	public float maxVelocityX = 8f;
 	public float movementXEasing = 0.2f;
 
+    public bool enabledMove;
+
 	private SpriteRenderer sr;
 	private Animator anim;
 	private bool movingR = false;
@@ -23,18 +25,22 @@ public class PlayerController : MonoBehaviour {
 		sr = GetComponent<SpriteRenderer> ();
 		sr.flipX = true;
 		anim = GetComponent<Animator> ();
-		anim.CrossFade("player_idle", 0f);
+//		anim.CrossFade("player_idle", 0f);
 		jumpTimer = GetComponent<Timer> ();
 		jumpTimer.setTimer(0.1f);
 	}
 
 	void Update () {
+        if (enabledMove == false) {
+            return;
+        }
+
 		//Player's movement based on WASD keys and Space Bar
 		if (Input.GetKeyDown (KeyCode.D)) {
 			movingR = true;
 			anim.CrossFade("player_run", 0f);
 
-		} else if (Input.GetKeyDown (KeyCode.A)) {
+        } else if (Input.GetKeyDown (KeyCode.A)) {
 			movingL = true;
 			anim.CrossFade("player_run", 0f);
 		} else if (Input.GetKeyUp (KeyCode.D)) {

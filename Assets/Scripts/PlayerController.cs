@@ -17,9 +17,14 @@ public class PlayerController : MonoBehaviour {
 	private bool movingL = false;
 	private bool jumping = false;
 	private Timer jumpTimer;
+	private int HP;
+
 
 	public Vector3 getposition(){
 		return transform.position;
+	}
+	public void decrease_Hp(){
+		HP--;
 	}
 
 	void Start () {
@@ -27,9 +32,10 @@ public class PlayerController : MonoBehaviour {
 		sr = GetComponent<SpriteRenderer> ();
 		sr.flipX = true;
 		anim = GetComponent<Animator> ();
-//		anim.CrossFade("player_idle", 0f);
+		//anim.CrossFade("player_idle", 0f);
 		jumpTimer = GetComponent<Timer> ();
 		jumpTimer.setTimer(0.1f);
+		HP = 4;  //set the initial HP
 	}
 
 	void Update () {

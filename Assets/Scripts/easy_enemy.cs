@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class easy_enemy : MonoBehaviour {
+	
 	public Vector3 pos;
 	private int walkstate;
 	public float leftborder,rightborder,speed;
 	private Collider2D coll;
+	public PlayerController player;
 
 	void OnTriggerEnter2D(Collider2D Coll)
 	{

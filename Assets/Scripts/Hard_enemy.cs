@@ -15,7 +15,7 @@ public class Hard_enemy : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D Coll)
 	{
 		if (Coll.gameObject.name == "Player") {
-			Destroy(Coll.gameObject);
+			player.decrease_Hp ();
 		}
 	}
 

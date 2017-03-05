@@ -25,6 +25,8 @@ GameObject:
   - component: {fileID: 50761885482173506}
   - component: {fileID: 61116997676297596}
   - component: {fileID: 61788782638395958}
+  - component: {fileID: 114681306384441442}
+  - component: {fileID: 114292721654314988}
   m_Layer: 0
   m_Name: Easy_Enemy
   m_TagString: Untagged
@@ -126,6 +128,31 @@ MonoBehaviour:
   leftborder: -2
   rightborder: 2
   speed: 2
+--- !u!114 &114292721654314988
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1725220968230072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa01ffb41df6c2c4a8e30b33e3c21b4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDamage: 1
+  attackPause: 0.5
+--- !u!114 &114681306384441442
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1725220968230072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 333a083bfe7becf458ca1ea0cc3be62f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 10
 --- !u!212 &212828033215404852
 SpriteRenderer:
   m_ObjectHideFlags: 1

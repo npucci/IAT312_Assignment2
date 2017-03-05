@@ -155,16 +155,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1932144595779308}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f9eba6e16469b64aae844443378e62e, type: 3}
+  m_Script: {fileID: 11500000, guid: 13ee021c0dd6943499bd2421654d7ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueBox: {fileID: 1069507061600284}
+  dialogueBox: {fileID: 0}
   player: {fileID: 0}
-  dialogueScript: {fileID: 114012917386104074}
-  textFile: {fileID: 4900000, guid: 8df3edc7f48e7dc48ace1e4cb2afba50, type: 3}
+  dialogueScript: {fileID: 0}
+  textFile: {fileID: 0}
   textLines: []
   lineTracker: 0
-  lastLine: 4
+  lastLine: 0
   isActive: 0
   pausePlayer: 0
 --- !u!212 &212251592624116916

@@ -49,18 +49,4 @@ public class easy_enemy : MonoBehaviour {
 
 		rb.transform.Translate (Vector2.right * direction * speed * Time.deltaTime);
 	}
-
-	void OnTriggerEnter2D(Collider2D Coll)
-	{
-		if (Coll.gameObject.name == "Player") {
-			Coll.gameObject.GetComponent<Health>().decreaseHp(attackDamage);
-		}
-	}
-
-	void OnTriggerStay2D(Collider2D Coll)
-	{
-		if (Coll.gameObject.name == "Player") {
-			Coll.gameObject.GetComponent<Health>().decreaseHp(attackDamage);
-		}
-	}
 }

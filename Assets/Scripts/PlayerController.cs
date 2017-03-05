@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour {
 	public float maxVelocityX = 8f;
 	public float movementXEasing = 0.6f;
 	public bool enabledMove = false; // for dialogue system
-	public float attackDamage = 1f;
 
 	private bool grounded = false;
 	private Rigidbody2D rb;
@@ -18,7 +17,6 @@ public class PlayerController : MonoBehaviour {
 	private bool movingR = false;
 	private bool movingL = false;
 	private bool jumping = false;
-	private bool attacking = false;
 
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
@@ -51,13 +49,6 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Space) && grounded) {
 			jumping = true;
 			anim.CrossFade ("player_jump", 0f);
-		}
-
-		// if player is clicking the left mouse click, set attacking flag
-		if (Input.GetMouseButtonDown (0)) {
-			attacking = true;
-		} else {
-			attacking = false;
 		}
 	}
 
@@ -129,20 +120,5 @@ public class PlayerController : MonoBehaviour {
 
 	void OnCollisionExit2D(Collision2D other) {
 		grounded = false;
-	}
-
-	void OnTriggerEnter2D(Collider2D Coll)
-	{
-		if (attacking && Coll.gameObject.name.Contains("Enemy")) {
-			Debug.Log ("here");
-			Coll.gameObject.GetComponent <Health>().decreaseHp(attackDamage);
-		}
-	}
-
-	void OnTriggerStay2D(Collider2D Coll)
-	{
-		if (attacking && Coll.gameObject.name.Contains("Enemy")) {
-			Coll.gameObject.GetComponent <Health>().decreaseHp(attackDamage);
-		}
 	}
 }

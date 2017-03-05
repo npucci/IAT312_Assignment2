@@ -22,6 +22,7 @@ public class DialogueManager : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+		dialogueBox = transform.GetChild (0).gameObject;
 
         player = FindObjectOfType<PlayerController>();
 

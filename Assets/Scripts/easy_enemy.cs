@@ -3,47 +3,50 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class easy_enemy : MonoBehaviour {
-	
-	public Vector3 pos;
-	private int walkstate;
-	public float leftborder,rightborder,speed;
-	private Collider2D coll;
-	public PlayerController player;
+	private Vector3 pos;
+	private Vector3 origin;
+	private int direction;
+	private Rigidbody2D rb;
+	private SpriteRenderer sr;
+
+	public bool startGoingRight = true;
+	public float attackDamage = 1f;
+	public float leftborder, rightborder, speed;
+
+	void Start () {
+		rb = GetComponent<Rigidbody2D> ();
+		sr = GetComponent<SpriteRenderer> ();
+		origin = transform.position;
+		if (startGoingRight) {
+			direction = 1;
+		} else {
+			direction = -1;
+		}
+	}
+		
+	void Update () {
+		pos = rb.transform.position;
+		if (pos.x < origin.x + leftborder) {
+			direction = 1;
+		}
+
+		if (pos.x > origin.x + rightborder) {
+			direction = -1;
+		}
+
+		if (direction == 1) {
+			sr.flipX = true;
+		} else {
+			sr.flipX = false;
+		}
+
+		rb.transform.Translate (Vector2.right * direction * speed * Time.deltaTime);
+	}
 
 	void OnTriggerEnter2D(Collider2D Coll)
 	{
 		if (Coll.gameObject.name == "Player") {
-			Destroy(Coll.gameObject);
-		}
-	}
-
-
-	void Start () {
-		walkstate = 1;
-	}
-
-	// Update is called once per frame
-	void Update () {
-		pos = this.transform.position;
-		if (walkstate == 1) {
-			if (pos.x > leftborder) {
-				transform.Translate (Vector2.left * speed/10);
-			} 
-			else {
-				walkstate = 2;
-			}
-		}
-		//pos = this.transform.position;
-		if (walkstate == 2) {
-
-			if (pos.x < rightborder) {
-				transform.rotation = Quaternion.AngleAxis (180, Vector3.down);
-				transform.Translate (Vector2.left * speed/10);
-			} 
-			else {
-				transform.rotation = Quaternion.AngleAxis (0, Vector3.down);
-				walkstate = 1;
-			}
+			Coll.gameObject.GetComponent<PlayerController>().decrease_Hp(attackDamage);
 		}
 	}
 }

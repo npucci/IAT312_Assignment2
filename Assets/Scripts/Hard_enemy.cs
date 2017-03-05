@@ -6,6 +6,8 @@ public class Hard_enemy : MonoBehaviour {
 	
 	public PlayerController player;
 	public float leftborder,rightborder,speed,jump_height,react_time,distance;
+	public float attackDamage = 1f;
+
 	private Vector3 pos;
 	private int walkstate;
 	private Collider2D coll;
@@ -15,7 +17,7 @@ public class Hard_enemy : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D Coll)
 	{
 		if (Coll.gameObject.name == "Player") {
-			player.decrease_Hp ();
+			player.decrease_Hp (attackDamage);
 		}
 	}
 

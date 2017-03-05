@@ -22,7 +22,7 @@ public class Horizon_plateform : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		pos = this.transform.position;
-		if (pos.x <= origin.x - leftborder) {
+		if (pos.x <= origin.x + leftborder) {
 			direction = -1;
 		}
 		else if (pos.x >= origin.x + rightborder) {
@@ -35,7 +35,6 @@ public class Horizon_plateform : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D other) {
 		if (other.transform.position.y > transform.position.y + 1f) {
 			other.transform.parent = transform;
-			Debug.Log ("Parented!");
 		}
 	}
 
@@ -43,6 +42,5 @@ public class Horizon_plateform : MonoBehaviour {
 	// relative to the horizontal position of the platform
 	void OnTriggerExit2D(Collider2D other) {
 		other.transform.parent = null;
-		Debug.Log ("Freed!");
 	}
 }

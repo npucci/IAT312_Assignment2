@@ -27,7 +27,7 @@ public class Vertical_platfrom : MonoBehaviour {
 				direction = -1;
 		}
 
-		else if (pos.y <= origin.y - bottomborder) {
+		else if (pos.y <= origin.y + bottomborder) {
 				direction = 1;
 		}
 

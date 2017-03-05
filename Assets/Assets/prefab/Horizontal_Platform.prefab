@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startGoingRight: 1
-  leftborder: 5
+  leftborder: -5
   rightborder: 5
   speed: 5
 --- !u!212 &212072510547611214

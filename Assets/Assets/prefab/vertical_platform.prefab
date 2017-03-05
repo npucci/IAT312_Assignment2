@@ -70,9 +70,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a63b09285cc37a47ba40b5065a9807d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startGoingUp: 1
+  startGoingUp: 0
   topborder: 5
-  bottomborder: 0
+  bottomborder: -5
   speed: 5
 --- !u!212 &212354785427327524
 SpriteRenderer:
@@ -124,7 +124,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.61, y: -0.7}
+  m_AnchoredPosition: {x: -12.02, y: -0.7}
   m_SizeDelta: {x: 12, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!251 &251518974752689370

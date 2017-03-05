@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-	private Rigidbody2D rb;
 	public float speed = 30f;
 	public float jumpSpeed = 10f;
 	public float maxVelocityX = 8f;
 	public float movementXEasing = 0.6f;
-	public bool enabledMove;
+	public bool enabledMove = false; // for dialogue system
+	public float HP = 10f;
 
 	private bool grounded = false;
+	private Rigidbody2D rb;
 	private SpriteRenderer sr;
 	private Animator anim;
 	private bool movingR = false;
 	private bool movingL = false;
 	private bool jumping = false;
-	private int HP;
 
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
@@ -30,17 +30,17 @@ public class PlayerController : MonoBehaviour {
 		//Player's movement based on WASD keys and Space Bar
 		if (Input.GetKeyDown (KeyCode.D)) {
 			movingR = true;
-			anim.CrossFade("player_run", 0f);
-        } else if (Input.GetKeyDown (KeyCode.A)) {
+			anim.CrossFade ("player_run", 0f);
+		} else if (Input.GetKeyDown (KeyCode.A)) {
 			movingL = true;
-			anim.CrossFade("player_run", 0f);
+			anim.CrossFade ("player_run", 0f);
 		} else if (Input.GetKeyUp (KeyCode.D)) {
 			movingR = false;
 			anim.CrossFade ("player_idle", 0f);
 		} else if (Input.GetKeyUp (KeyCode.A)) {
 			movingL = false;
 			anim.CrossFade ("player_idle", 0f);
-		} 
+		}
 
 		if (Input.GetKeyDown (KeyCode.Space) && grounded) {
 			jumping = true;
@@ -121,7 +121,8 @@ public class PlayerController : MonoBehaviour {
 	public Vector3 getposition(){
 		return transform.position;
 	}
-	public void decrease_Hp(){
-		HP--;
+	public void decrease_Hp(float attackDamage){
+		HP -= attackDamage;
+		//Debug.Log ("Player Health: " + HP);
 	}
 }

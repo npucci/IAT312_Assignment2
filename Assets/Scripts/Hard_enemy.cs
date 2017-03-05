@@ -11,16 +11,9 @@ public class Hard_enemy : MonoBehaviour {
 	private Vector3 pos;
 	private int walkstate;
 	private Collider2D coll;
+	private Health healthManager;
 	private Vector3 player_pos;
 	private bool jump,follow,react;
-
-	void OnTriggerEnter2D(Collider2D Coll)
-	{
-		if (Coll.gameObject.name == "Player") {
-			player.decrease_Hp (attackDamage);
-		}
-	}
-
 
 	public IEnumerator wait()
 	{
@@ -29,6 +22,7 @@ public class Hard_enemy : MonoBehaviour {
 	}
 
 	void Start () {
+		healthManager = GetComponent<Health> ();
 		jump = false;
 		follow = false;
 		walkstate = 1;
@@ -37,6 +31,10 @@ public class Hard_enemy : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if(healthManager.dead()) {
+			Destroy(this);
+		}
+
 		if (Vector3.Distance (gameObject.transform.localPosition, player.getposition ()) < distance) {
 			if(react==true){
 				jump = true;
@@ -87,6 +85,20 @@ public class Hard_enemy : MonoBehaviour {
 			}
 			
 			
+		}
+	}
+		
+	void OnTriggerEnter2D(Collider2D Coll)
+	{
+		if (Coll.gameObject.name == "Player") {
+			player.GetComponent<Health>().decreaseHp (attackDamage);
+		}
+	}
+
+	void OnTriggerStay2D(Collider2D Coll)
+	{
+		if (Coll.gameObject.name == "Player") {
+			Coll.gameObject.GetComponent<Health>().decreaseHp(attackDamage);
 		}
 	}
 }

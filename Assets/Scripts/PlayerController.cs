@@ -8,25 +8,31 @@ public class PlayerController : MonoBehaviour {
 	public float maxVelocityX = 8f;
 	public float movementXEasing = 0.6f;
 	public bool enabledMove = false; // for dialogue system
-	public float HP = 10f;
+	public float attackDamage = 1f;
 
 	private bool grounded = false;
 	private Rigidbody2D rb;
 	private SpriteRenderer sr;
+	private Health healthManager;
 	private Animator anim;
 	private bool movingR = false;
 	private bool movingL = false;
 	private bool jumping = false;
+	private bool attacking = false;
 
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 		sr = GetComponent<SpriteRenderer> ();
+		healthManager = GetComponent<Health> ();
 		sr.flipX = true;
 		anim = GetComponent<Animator> ();
-		HP = 4;  //set the initial HP
 	}
 
 	void Update () {
+		if(healthManager.dead()) {
+			//Debug.Log("Player Died. GAMEOVER"); // GAMEOVER
+		}
+	
 		//Player's movement based on WASD keys and Space Bar
 		if (Input.GetKeyDown (KeyCode.D)) {
 			movingR = true;
@@ -45,6 +51,13 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Space) && grounded) {
 			jumping = true;
 			anim.CrossFade ("player_jump", 0f);
+		}
+
+		// if player is clicking the left mouse click, set attacking flag
+		if (Input.GetMouseButtonDown (0)) {
+			attacking = true;
+		} else {
+			attacking = false;
 		}
 	}
 
@@ -99,13 +112,13 @@ public class PlayerController : MonoBehaviour {
 				rb.velocity = new Vector2 (-maxVelocityX, rb.velocity.y);
 			}
 		}
-
-		// add imulse force to rigidbody for vertical movement
+			
 		rb.AddForce(moveY, ForceMode2D.Impulse);
-		//rb.velocity = new Vector2(xSpeed, jSpeed); 
 	}
 
-
+	public Vector3 getposition(){
+		return transform.position;
+	}
 
 	void OnCollisionStay2D(Collision2D other) {
 		if (transform.position.y > other.transform.position.y) {
@@ -113,16 +126,23 @@ public class PlayerController : MonoBehaviour {
 			jumping = false;
 		}
 	}
-		
+
 	void OnCollisionExit2D(Collision2D other) {
 		grounded = false;
 	}
 
-	public Vector3 getposition(){
-		return transform.position;
+	void OnTriggerEnter2D(Collider2D Coll)
+	{
+		if (attacking && Coll.gameObject.name.Contains("Enemy")) {
+			Debug.Log ("here");
+			Coll.gameObject.GetComponent <Health>().decreaseHp(attackDamage);
+		}
 	}
-	public void decrease_Hp(float attackDamage){
-		HP -= attackDamage;
-		//Debug.Log ("Player Health: " + HP);
+
+	void OnTriggerStay2D(Collider2D Coll)
+	{
+		if (attacking && Coll.gameObject.name.Contains("Enemy")) {
+			Coll.gameObject.GetComponent <Health>().decreaseHp(attackDamage);
+		}
 	}
 }

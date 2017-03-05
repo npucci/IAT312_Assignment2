@@ -8,6 +8,7 @@ public class easy_enemy : MonoBehaviour {
 	private int direction;
 	private Rigidbody2D rb;
 	private SpriteRenderer sr;
+	private Health healthManager;
 
 	public bool startGoingRight = true;
 	public float attackDamage = 1f;
@@ -16,6 +17,7 @@ public class easy_enemy : MonoBehaviour {
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 		sr = GetComponent<SpriteRenderer> ();
+		healthManager = GetComponent<Health> ();
 		origin = transform.position;
 		if (startGoingRight) {
 			direction = 1;
@@ -25,6 +27,10 @@ public class easy_enemy : MonoBehaviour {
 	}
 		
 	void Update () {
+		if(healthManager.dead()) {
+			Destroy(gameObject);
+		}
+
 		pos = rb.transform.position;
 		if (pos.x < origin.x + leftborder) {
 			direction = 1;
@@ -34,6 +40,7 @@ public class easy_enemy : MonoBehaviour {
 			direction = -1;
 		}
 
+		// flip sprite across the x axis so that sprite faces the correct direction of movement
 		if (direction == 1) {
 			sr.flipX = true;
 		} else {
@@ -46,7 +53,14 @@ public class easy_enemy : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D Coll)
 	{
 		if (Coll.gameObject.name == "Player") {
-			Coll.gameObject.GetComponent<PlayerController>().decrease_Hp(attackDamage);
+			Coll.gameObject.GetComponent<Health>().decreaseHp(attackDamage);
+		}
+	}
+
+	void OnTriggerStay2D(Collider2D Coll)
+	{
+		if (Coll.gameObject.name == "Player") {
+			Coll.gameObject.GetComponent<Health>().decreaseHp(attackDamage);
 		}
 	}
 }

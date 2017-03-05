@@ -20,17 +20,18 @@ GameObject:
   m_Component:
   - component: {fileID: 224455794495161178}
   - component: {fileID: 212072510547611214}
-  - component: {fileID: 61971127942348208}
-  - component: {fileID: 222213419563946542}
-  - component: {fileID: 114253303527316262}
+  - component: {fileID: 61430318104219522}
+  - component: {fileID: 70905560707795052}
+  - component: {fileID: 251182461291368418}
+  - component: {fileID: 114282824074438716}
   m_Layer: 0
-  m_Name: horizon_platform
+  m_Name: Horizontal_Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &61971127942348208
+--- !u!61 &61430318104219522
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -39,12 +40,26 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0.23298168}
+  m_Offset: {x: 0, y: 3.49}
   serializedVersion: 2
-  m_Size: {x: 12, y: 1.4838161}
---- !u!114 &114253303527316262
+  m_Size: {x: 11.58, y: 5.52}
+--- !u!70 &70905560707795052
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1493249294607416}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_Offset: {x: 0, y: 0.2}
+  m_Size: {x: 12, y: 1.25}
+  m_Direction: 1
+--- !u!114 &114282824074438716
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -55,9 +70,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b80824b9543f747a7ecead6118f15b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftborder: 0
-  rightborder: 0
-  speed: 0
+  startGoingRight: 1
+  leftborder: 5
+  rightborder: 5
+  speed: 5
 --- !u!212 &212072510547611214
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -93,12 +109,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!222 &222213419563946542
-CanvasRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1493249294607416}
 --- !u!224 &224455794495161178
 RectTransform:
   m_ObjectHideFlags: 1
@@ -114,6 +124,24 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.9, y: 0}
+  m_AnchoredPosition: {x: 12.1, y: -1.6332097}
   m_SizeDelta: {x: 12, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!251 &251182461291368418
+PlatformEffector2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1493249294607416}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1

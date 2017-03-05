@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 212933482537887154}
   - component: {fileID: 50683887615894954}
   - component: {fileID: 61299932689038272}
-  - component: {fileID: 114640876410605454}
   - component: {fileID: 114976197142202264}
   - component: {fileID: 95949868441493136}
   m_Layer: 0
@@ -39,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1548279727373534}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.6951988, y: 2.4205205, z: 0}
+  m_LocalPosition: {x: -1.44, y: 0.07, z: 0}
   m_LocalScale: {x: 3.686131, y: 3.6861312, z: 3.6861312}
   m_Children: []
   m_Father: {fileID: 0}
@@ -59,7 +58,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -88,7 +87,7 @@ Animator:
   m_GameObject: {fileID: 1548279727373534}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: de6c41762b7daa844b7709ee1438f72b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 25b1b25bb0b700c43b6c1a301356c1ca, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -96,17 +95,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114640876410605454
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1548279727373534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b77d9cd4dc5f8ae46b148d61bd33810b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114976197142202264
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -118,10 +106,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8edbc998eb04fbd4aa798ea712f1f684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  jumpSpeed: 1
-  maxVelocityX: 5
-  movementXEasing: 0.2
+  speed: 30
+  jumpSpeed: 10
+  maxVelocityX: 8
+  movementXEasing: 0.6
+  enabledMove: 0
 --- !u!212 &212933482537887154
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 50761885482173506}
   - component: {fileID: 61116997676297596}
   m_Layer: 0
-  m_Name: easy_enemy
+  m_Name: Easy_Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,6 +110,7 @@ MonoBehaviour:
   leftborder: 0
   rightborder: 0
   speed: 0
+  player: {fileID: 0}
 --- !u!212 &212828033215404852
 SpriteRenderer:
   m_ObjectHideFlags: 1

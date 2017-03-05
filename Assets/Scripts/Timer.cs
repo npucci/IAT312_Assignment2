@@ -6,38 +6,28 @@ public class Timer : MonoBehaviour {
 	private float timerAmount;
 	private float countDown;
 	private bool timerStarted;
-
-	/*
-	// empty constructor
-	public Timer () {
-		timerAmount = 0f;
-		countDown = 0f;
-		timerStarted = false;
-	}
-
-	// overloaded constructor
-	public Timer (float amount) {
-		timerAmount = amount;
-		countDown = 0f;
-		timerStarted = false;
-	}
-	*/
+	private bool stop = true;
 	
 	// Update is called once per frame
 	void Update () {
-		if (countDown > 0) {
+		if (!stop && countDown > 0) {
+			Debug.Log (countDown);
 			countDown -= Time.deltaTime;
+			if (countDown < 0) {
+				stop = true;
+			}
 		}
 	}
 
 	// starts timer
 	public void startTimer () {
 		countDown = timerAmount;
+		stop = false;
 	}
 
 	// returns true if the timer is stopped
 	public bool stopped() {
-		return countDown <= 0;
+		return stop;
 	}
 
 	// resetting value of timer

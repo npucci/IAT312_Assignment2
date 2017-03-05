@@ -4,38 +4,25 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 	private Rigidbody2D rb;
-	public float speed = 15f;
-	public float jumpSpeed = 1f;
+	public float speed = 30f;
+	public float jumpSpeed = 10f;
 	public float maxVelocityX = 8f;
-	public float movementXEasing = 0.2f;
+	public float movementXEasing = 0.6f;
+	public bool enabledMove;
 
-    public bool enabledMove;
-
+	private bool grounded = false;
 	private SpriteRenderer sr;
 	private Animator anim;
 	private bool movingR = false;
 	private bool movingL = false;
 	private bool jumping = false;
-	private Timer jumpTimer;
 	private int HP;
 
-
-	public Vector3 getposition(){
-		return transform.position;
-	}
-	public void decrease_Hp(){
-		HP--;
-	}
-
 	void Start () {
-		Debug.Log ("here");
 		rb = GetComponent<Rigidbody2D> ();
 		sr = GetComponent<SpriteRenderer> ();
 		sr.flipX = true;
 		anim = GetComponent<Animator> ();
-		//anim.CrossFade("player_idle", 0f);
-		jumpTimer = GetComponent<Timer> ();
-		jumpTimer.setTimer(0.1f);
 		HP = 4;  //set the initial HP
 	}
 
@@ -44,7 +31,6 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.D)) {
 			movingR = true;
 			anim.CrossFade("player_run", 0f);
-
         } else if (Input.GetKeyDown (KeyCode.A)) {
 			movingL = true;
 			anim.CrossFade("player_run", 0f);
@@ -56,21 +42,13 @@ public class PlayerController : MonoBehaviour {
 			anim.CrossFade ("player_idle", 0f);
 		} 
 
-		if (Input.GetKeyDown (KeyCode.Space) && !jumping) {
+		if (Input.GetKeyDown (KeyCode.Space) && grounded) {
 			jumping = true;
-			jumpTimer.startTimer();
 			anim.CrossFade ("player_jump", 0f);
 		}
-
-		if(jumpTimer.stopped() && rb.velocity.y == 0) {
-			if (jumping && !movingR && !movingL) {
-				anim.CrossFade ("player_idle", 0f);
-			}
-			jumping = false;
-		}
-
 	}
 
+	// updates only physics when necessary
 	void FixedUpdate() {
 		float jSpeed = 0f;
 		float xSpeed = 0f;
@@ -78,7 +56,6 @@ public class PlayerController : MonoBehaviour {
 		if (movingR) {
 			xSpeed = speed;
 			sr.flipX = true;
-
 		} 
 
 		else if (movingL) {
@@ -102,16 +79,17 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		// if player is jumping
-		if (jumping && !jumpTimer.stopped()) {
+		if (jumping) {//jumping && !jumpTimer.stopped()) {
 			jSpeed = jumpSpeed;
+			//jumping = false;
 		}
-
-
+			
 		Vector2 moveX = new Vector2(xSpeed, 0);     
 		Vector2 moveY = new Vector2(0, jSpeed);   
 
 		// add force to rigidbody for horizontal movement
 		rb.AddForce(moveX, ForceMode2D.Force);
+		// make sure player does not exceed the max velocity limit, and if so, bound them by that value
 		if (Mathf.Abs (rb.velocity.x) > maxVelocityX) {
 			if (rb.velocity.x > 0) {
 				rb.velocity = new Vector2 (maxVelocityX, rb.velocity.y);
@@ -124,7 +102,26 @@ public class PlayerController : MonoBehaviour {
 
 		// add imulse force to rigidbody for vertical movement
 		rb.AddForce(moveY, ForceMode2D.Impulse);
+		//rb.velocity = new Vector2(xSpeed, jSpeed); 
 	}
 
 
+
+	void OnCollisionStay2D(Collision2D other) {
+		if (transform.position.y > other.transform.position.y) {
+			grounded = true;
+			jumping = false;
+		}
+	}
+		
+	void OnCollisionExit2D(Collision2D other) {
+		grounded = false;
+	}
+
+	public Vector3 getposition(){
+		return transform.position;
+	}
+	public void decrease_Hp(){
+		HP--;
+	}
 }

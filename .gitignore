@@ -29,12 +29,12 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
-Assets/Animations.meta
+#Assets/Animations.meta
 
-*.meta
+#*.meta
 
-Assets/Animations.meta
+#Assets/Animations.meta
 
-*.meta
+#*.meta
 
 Assets/Standard Assets.meta

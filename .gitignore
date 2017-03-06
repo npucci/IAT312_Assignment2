@@ -38,3 +38,5 @@ sysinfo.txt
 #*.meta
 
 Assets/Standard Assets.meta
+
+*.prefab

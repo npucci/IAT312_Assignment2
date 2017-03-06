@@ -1,0 +1,7 @@
+Meow! (Press F to scroll)
+Welcome!
+Use WASD to MOVE around,
+and the SPACE BAR to JUMP.
+If you see any more cats, don't be afraid to talk to us.
+To DIALOGUE, Press E.
+Meow!

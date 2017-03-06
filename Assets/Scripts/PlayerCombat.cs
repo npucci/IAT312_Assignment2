@@ -19,7 +19,6 @@ public class PlayerCombat : Combat {
 	void OnTriggerEnter2D(Collider2D coll)
 	{
 		if (attacking && coll.gameObject.name.Contains("Enemy")) {
-			Debug.Log ("Player attacked " + attacking);
 			coll.gameObject.GetComponent <Health>().decreaseHp(attackDamage);
 			applyForce (coll.gameObject.GetComponent<Rigidbody2D> ());
 			base.attackTimer.startTimer ();
@@ -29,7 +28,6 @@ public class PlayerCombat : Combat {
 	void OnTriggerStay2D(Collider2D coll)
 	{
 		if (attacking && coll.gameObject.name.Contains("Enemy")) {
-			Debug.Log ("Player attacked " + attacking);
 			coll.gameObject.GetComponent <Health>().decreaseHp(attackDamage);
 			applyForce (coll.gameObject.GetComponent<Rigidbody2D> ());
 			base.attackTimer.startTimer ();

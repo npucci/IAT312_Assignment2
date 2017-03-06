@@ -12,7 +12,6 @@ public class AICombat : Combat {
 	{
 		if (!coll.isTrigger && base.attackTimer.stopped() && coll.gameObject.name == "Player") {
 			coll.gameObject.GetComponent<Health>().decreaseHp(attackDamage);
-
 			base.attackTimer.startTimer ();
 		}
 	}

@@ -9,9 +9,24 @@ public class StartScene : MonoBehaviour {
 	private float Timer;
 	private bool jumpflag=false;
 
+	public void Menu(){
+		Application.LoadLevel (0);//change the variable according to your build settings^^
+	}
 
-	public void StartGame(){
+	public void Intro (){
 		Application.LoadLevel (1);//change the variable according to your build settings^^
+	}
+
+	public void LevelOne(){
+		Application.LoadLevel (2);//change the variable according to your build settings^^
+	}
+
+	public void LevelTwo(){
+		Application.LoadLevel (3);//change the variable according to your build settings^^
+	}
+
+	public void LevelThree(){
+		Application.LoadLevel (4);//change the variable according to your build settings^^
 	}
 
 	/*

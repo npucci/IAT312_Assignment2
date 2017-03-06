@@ -19,6 +19,7 @@ public class PlayerCombat : Combat {
 	void OnTriggerEnter2D(Collider2D coll)
 	{
 		if (attacking && coll.gameObject.name.Contains("Enemy")) {
+			Debug.Log ("Player attacked " + attacking);
 			coll.gameObject.GetComponent <Health>().decreaseHp(attackDamage);
 			applyForce (coll.gameObject.GetComponent<Rigidbody2D> ());
 			base.attackTimer.startTimer ();
@@ -28,6 +29,7 @@ public class PlayerCombat : Combat {
 	void OnTriggerStay2D(Collider2D coll)
 	{
 		if (attacking && coll.gameObject.name.Contains("Enemy")) {
+			Debug.Log ("Player attacked " + attacking);
 			coll.gameObject.GetComponent <Health>().decreaseHp(attackDamage);
 			applyForce (coll.gameObject.GetComponent<Rigidbody2D> ());
 			base.attackTimer.startTimer ();
@@ -41,7 +43,7 @@ public class PlayerCombat : Combat {
 		} else {
 			direction = -1;
 		}
-		Vector2 force = new Vector2 (direction * base.attackDamage * attackForce, direction * base.attackDamage * attackForce);
+		Vector2 force = new Vector2 (direction * base.attackDamage * attackForce, base.attackDamage * attackForce);
 		rb.AddForce (force, ForceMode2D.Impulse);
 		base.attackTimer.startTimer ();
 	}

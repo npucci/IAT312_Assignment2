@@ -17,10 +17,9 @@ public class Waypoint : MonoBehaviour {
 
     }
 
-    public void OnTriggerStay2D(Collision2D Other) {
-    if (Input.GetKeyDown(KeyCode.W))
-     {
-        Application.LoadLevel(loadNextLevel + 1);
-     } 
+	public void OnTriggerStay2D(Collider2D other) {
+    	if (other.gameObject.name == "Player" && Input.GetKeyDown(KeyCode.W)) {
+        	Application.LoadLevel(loadNextLevel + 1);
+		} 
     }
 }

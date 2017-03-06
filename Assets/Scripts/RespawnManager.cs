@@ -27,6 +27,11 @@ public class RespawnManager : MonoBehaviour {
 		if(player.transform.position.y <= deathDepth) {
 			respawnPlayer ();
 		}
+
+		if (player.transform.GetComponent<Health> ().dead ()) {
+			respawnPlayer ();
+			player.transform.GetComponent<Health> ().resetHealth ();
+		}
 	}
 
 	private void spawnPlayer () {

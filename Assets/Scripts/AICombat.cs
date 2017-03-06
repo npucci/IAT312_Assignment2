@@ -10,7 +10,7 @@ public class AICombat : Combat {
 
 	void OnTriggerEnter2D(Collider2D coll)
 	{
-		if (base.attackTimer.stopped() && coll.gameObject.name == "Player") {
+		if (!coll.isTrigger && base.attackTimer.stopped() && coll.gameObject.name == "Player") {
 			coll.gameObject.GetComponent<Health>().decreaseHp(attackDamage);
 
 			base.attackTimer.startTimer ();
@@ -19,7 +19,7 @@ public class AICombat : Combat {
 
 	void OnTriggerStay2D(Collider2D coll)
 	{
-		if (base.attackTimer.stopped() && coll.gameObject.name == "Player") {
+		if (!coll.isTrigger && base.attackTimer.stopped() && coll.gameObject.name == "Player") {
 			coll.gameObject.GetComponent<Health>().decreaseHp(attackDamage);
 			base.attackTimer.startTimer ();
 		}

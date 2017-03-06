@@ -27,27 +27,34 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update () {
-		if(healthManager.dead()) {
-			//Debug.Log("Player Died. GAMEOVER"); // GAMEOVER
-		}
-	
 		//Player's movement based on WASD keys and Space Bar
 		if (Input.GetKeyDown (KeyCode.D)) {
 			movingR = true;
-			anim.CrossFade ("player_run", 0f);
-		} else if (Input.GetKeyDown (KeyCode.A)) {
+			//anim.CrossFade ("player_run", 0f);
+		} 
+		if (Input.GetKeyDown (KeyCode.A)) {
 			movingL = true;
-			anim.CrossFade ("player_run", 0f);
-		} else if (Input.GetKeyUp (KeyCode.D)) {
+			//anim.CrossFade ("player_run", 0f);
+		} 
+		if (Input.GetKeyUp (KeyCode.D)) {
 			movingR = false;
-			anim.CrossFade ("player_idle", 0f);
-		} else if (Input.GetKeyUp (KeyCode.A)) {
-			movingL = false;
-			anim.CrossFade ("player_idle", 0f);
+			//anim.CrossFade ("player_idle", 0f);
 		}
+		if (Input.GetKeyUp (KeyCode.A)) {
+			movingL = false;
+			//anim.CrossFade ("player_idle", 0f);
+		} 
 
 		if (Input.GetKeyDown (KeyCode.Space) && grounded) {
 			jumping = true;
+			//anim.CrossFade ("player_jump", 0f);
+		} 
+
+		if (grounded && (movingR || movingL)) {
+			anim.CrossFade ("player_run", 0f);
+		} else if (grounded) {
+			anim.CrossFade ("player_idle", 0f);
+		} else {
 			anim.CrossFade ("player_jump", 0f);
 		}
 	}
@@ -83,9 +90,9 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		// if player is jumping
-		if (jumping) {//jumping && !jumpTimer.stopped()) {
+		if (jumping) {
 			jSpeed = jumpSpeed;
-			//jumping = false;
+			jumping = false;
 		}
 			
 		Vector2 moveX = new Vector2(xSpeed, 0);     
@@ -111,6 +118,13 @@ public class PlayerController : MonoBehaviour {
 		return transform.position;
 	}
 
+	void OnCollisionEnter2D(Collision2D other) {
+		if (transform.position.y > other.transform.position.y) {
+			grounded = true;
+			jumping = false;
+		}
+	}
+
 	void OnCollisionStay2D(Collision2D other) {
 		if (transform.position.y > other.transform.position.y) {
 			grounded = true;
@@ -119,6 +133,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnCollisionExit2D(Collision2D other) {
-		grounded = false;
+		if (transform.position.y > other.transform.position.y) {
+			grounded = false;
+		}
 	}
 }

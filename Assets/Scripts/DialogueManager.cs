@@ -48,6 +48,12 @@ public class DialogueManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+		// if player is not destroyed on load, this script won't be able to find it for a short interval, so it must check a bit later
+		// also, the other find method will not work in this case, so here is an alternative method that must be used
+		if (player == null) {
+			player = (PlayerController)FindObjectOfType(typeof(PlayerController));
+		}
+
         if (isActive == false) {
             return;
         }

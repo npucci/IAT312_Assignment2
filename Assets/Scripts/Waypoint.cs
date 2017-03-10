@@ -4,11 +4,29 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Waypoint : MonoBehaviour {
-	public int loadNextLevel;
+	public string nextSceneName;
 
 	public void OnTriggerStay2D(Collider2D other) {
     	if (other.gameObject.name == "Player" && Input.GetKeyDown(KeyCode.W)) {
-        	Application.LoadLevel(loadNextLevel);
+			int i = -1;
+			switch (nextSceneName) {
+			case "level1":
+				i = 2;	
+				break;
+			case "level2":
+				i = 3;	
+				break;
+			case "level3":
+				i = 4;	
+				break;
+			default:
+				break;
+			}
+
+			if (SceneManager.GetActiveScene ().name != nextSceneName && i > -1) {
+				FindObjectOfType<GameManager> ().setLastSceneName (SceneManager.GetActiveScene().name);
+				SceneManager.LoadScene (i);
+			}
 		} 
     }
 }

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
+	public static PlayerController instance; // for singleton object
+
 	public float speed = 30f;
 	public float jumpSpeed = 10f;
 	public float maxVelocityX = 8f;
 	public float movementXEasing = 0.6f;
-	public bool enabledMove = false; // for dialogue system
+	public bool enabledMove = true; // for dialogue system
 
 	private bool grounded = false;
 	private Rigidbody2D rb;
@@ -18,6 +20,21 @@ public class PlayerController : MonoBehaviour {
 	private bool movingL = false;
 	private bool jumping = false;
 
+	void Awake() {
+		if (instance == null) {
+			instance = this;
+		}
+
+		// check for if there is a multiple or pre-existing player object in a scene,
+		// and destroys it, so that only the very first instantiation exists
+		else if (instance != this) {
+			Destroy (gameObject);
+		}
+
+		// tells Unity not to destroy this object
+		DontDestroyOnLoad (gameObject);
+	}
+
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 		sr = GetComponent<SpriteRenderer> ();
@@ -27,6 +44,15 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update () {
+		// pause player movement while dialogue is running, if selected by Dialogue Manager
+		if (!enabledMove) {
+			movingR = false;
+			movingL = false;
+			jumping = false;
+			anim.CrossFade ("player_idle", 0f);
+			return;
+		}
+
 		//Player's movement based on WASD keys and Space Bar
 		if (Input.GetKeyDown (KeyCode.D)) {
 			movingR = true;

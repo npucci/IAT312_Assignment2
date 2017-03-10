@@ -1,23 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RespawnManager : MonoBehaviour {
 	private GameObject player;
-	private GameObject playerRespawnPoint;
+	private Transform playerRespawnPoint;
+	private string currentSceneName;
 
 	public float deathDepth = -10f;
 
 	// Use this for initialization
 	void Start () {
-		for (int i = 0; i < transform.childCount; i++) {
-			GameObject child = transform.GetChild (i).gameObject;
-			if (child.name.Contains ("Player Respawn Point")) {
-				playerRespawnPoint = child;
-			}
-		}
-
+		currentSceneName = SceneManager.GetActiveScene ().name;
 		player = GameObject.Find ("Player");
+		findCorrectRespawnPoint ();
 		spawnPlayer ();
 
 	}
@@ -31,6 +28,19 @@ public class RespawnManager : MonoBehaviour {
 		if (player.transform.GetComponent<Health> ().dead ()) {
 			respawnPlayer ();
 			player.transform.GetComponent<Health> ().resetHealth ();
+		}
+	}
+
+	private void findCorrectRespawnPoint () {
+		string lastSceneName = GameObject.Find("Game Manager").GetComponent<GameManager>().getLastSceneName ();
+
+		if ((lastSceneName == "" || lastSceneName == "intro_cutscene") && currentSceneName == "level1") {
+			playerRespawnPoint = GameObject.Find ("Entrance").GetComponent<Transform> ();
+			player.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.None;
+			player.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezeRotation;
+
+		} else {
+			playerRespawnPoint = GameObject.Find ("Door To " + lastSceneName).GetComponent<Transform> ();
 		}
 	}
 

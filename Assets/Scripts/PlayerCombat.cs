@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerCombat : Combat {
 	public float attackForce = 1f;
+	private SpriteRenderer sr;
+
+	void Start () {
+		base.Start ();
+		sr = GetComponent<SpriteRenderer> ();
+	}
 
 	void Update () {
 		base.attackTimer.updateTimer (Time.deltaTime);
@@ -18,7 +24,13 @@ public class PlayerCombat : Combat {
 
 	void OnTriggerEnter2D(Collider2D coll)
 	{
-		if (attacking && coll.gameObject.name.Contains("Enemy")) {
+		if (attacking && coll.gameObject.name.Contains("Enemy") && sr.flipX && transform.position.x < coll.transform.position.x) {
+			coll.gameObject.GetComponent <Health>().decreaseHp(attackDamage);
+			applyForce (coll.gameObject.GetComponent<Rigidbody2D> ());
+			base.attackTimer.startTimer ();
+		}
+
+		else if (attacking && coll.gameObject.name.Contains("Enemy") && !sr.flipX && transform.position.x > coll.transform.position.x) {
 			coll.gameObject.GetComponent <Health>().decreaseHp(attackDamage);
 			applyForce (coll.gameObject.GetComponent<Rigidbody2D> ());
 			base.attackTimer.startTimer ();
@@ -27,7 +39,13 @@ public class PlayerCombat : Combat {
 
 	void OnTriggerStay2D(Collider2D coll)
 	{
-		if (attacking && coll.gameObject.name.Contains("Enemy")) {
+		if (attacking && coll.gameObject.name.Contains("Enemy") && sr.flipX && transform.position.x < coll.transform.position.x) {
+			coll.gameObject.GetComponent <Health>().decreaseHp(attackDamage);
+			applyForce (coll.gameObject.GetComponent<Rigidbody2D> ());
+			base.attackTimer.startTimer ();
+		}
+
+		else if (attacking && coll.gameObject.name.Contains("Enemy") && !sr.flipX && transform.position.x > coll.transform.position.x) {
 			coll.gameObject.GetComponent <Health>().decreaseHp(attackDamage);
 			applyForce (coll.gameObject.GetComponent<Rigidbody2D> ());
 			base.attackTimer.startTimer ();

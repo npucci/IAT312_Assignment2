@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueBox: {fileID: 947482830}
-  player: {fileID: 0}
+  player: {fileID: 1181582863}
   dialogueScript: {fileID: 1392457956}
   textFile: {fileID: 4900000, guid: fd923c8bef816d940a64d7c18bd6572f, type: 3}
   textLines: []
@@ -609,7 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -733,6 +733,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1143727307}
+--- !u!114 &1181582863 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114976197142202264, guid: 41e6fbb8916b331468861864655ad9e4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1467331346}
+  m_Script: {fileID: 11500000, guid: 8edbc998eb04fbd4aa798ea712f1f684, type: 3}
 --- !u!1 &1338870421
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,7 +884,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4050582344906146, guid: 41e6fbb8916b331468861864655ad9e4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5.587
+      value: -20.8
       objectReference: {fileID: 0}
     - target: {fileID: 4050582344906146, guid: 41e6fbb8916b331468861864655ad9e4, type: 2}
       propertyPath: m_LocalPosition.y
@@ -907,21 +913,6 @@ Prefab:
     - target: {fileID: 4050582344906146, guid: 41e6fbb8916b331468861864655ad9e4, type: 2}
       propertyPath: m_RootOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 212933482537887154, guid: 41e6fbb8916b331468861864655ad9e4,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 95949868441493136, guid: 41e6fbb8916b331468861864655ad9e4,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 50683887615894954, guid: 41e6fbb8916b331468861864655ad9e4,
-        type: 2}
-      propertyPath: m_BodyType
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 50683887615894954, guid: 41e6fbb8916b331468861864655ad9e4,
         type: 2}

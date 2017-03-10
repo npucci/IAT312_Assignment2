@@ -9,7 +9,7 @@ public class Combat : MonoBehaviour {
 	protected bool attacking = false;
 	protected Timer attackTimer;
 
-	void Start () {
+	public void Start () {
 		attackTimer = new Timer (attackPause);
 	}
 }

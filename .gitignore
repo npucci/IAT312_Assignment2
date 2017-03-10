@@ -39,4 +39,4 @@ sysinfo.txt
 
 Assets/Standard Assets.meta
 
-*.prefab
+#*.prefab

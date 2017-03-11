@@ -24,38 +24,38 @@ public class PlayerEvasion : MonoBehaviour {
         player = GameObject.Find("Player");
         sr.flipX = true;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update() {
 
         dashTimer.updateTimer(Time.deltaTime);
 
         Vector2 moveX = new Vector2(dashDistance, 0);
 
-        if (dashTimer.stopped() && Input.GetMouseButtonDown(1))
-        {
+		if (dashTimer.stopped()) {
+			dashing = false;
+		}
+		
+		if(!dashing && Input.GetMouseButtonDown(1)) {
             dashing = true;
-        }
-        else {
-            dashing = false;
+			dashTimer.startTimer();
         }
 
-        if (dashing == true && Input.GetMouseButtonDown(1))
-        {
+        if (dashing == true) {
             Physics2D.IgnoreLayerCollision(8, 9, true);
-            if (sr.flipX == true)
+			if (!dashTimer.stopped() && sr.flipX == true)
             {
                 rb.AddForce(moveX * 50, ForceMode2D.Impulse);
-                dashTimer.startTimer();
             }
-            else if (sr.flipX == false) {
+			else if (!dashTimer.stopped() && sr.flipX == false) {
                 rb.AddForce(-moveX * 50, ForceMode2D.Impulse);
-                dashTimer.startTimer();
             }
 
         }
-		else if (dashTimer.stopped()) { //Input.GetMouseButtonUp(1)) {
+
+		else if (dashTimer.stopped()) {
             Physics2D.IgnoreLayerCollision(8, 9, false);
+            dashing = false;
         }
 	}
 }

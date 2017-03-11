@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class RespawnManager : MonoBehaviour {
 	private GameObject player;
-	private Transform playerRespawnPoint;
+	private Vector3 playerRespawnPoint;
 	private string currentSceneName;
 
 	public float deathDepth = -10f;
@@ -35,18 +35,22 @@ public class RespawnManager : MonoBehaviour {
 		string lastSceneName = GameObject.Find("Game Manager").GetComponent<GameManager>().getLastSceneName ();
 
 		if ((lastSceneName == "" || lastSceneName == "intro_cutscene") && currentSceneName == "level1") {
-			playerRespawnPoint = GameObject.Find ("Entrance").GetComponent<Transform> ();
+			playerRespawnPoint = GameObject.Find ("Entrance").GetComponent<Transform> ().position;
 			player.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.None;
 			player.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezeRotation;
 
 		} else {
-			playerRespawnPoint = GameObject.Find ("Door To " + lastSceneName).GetComponent<Transform> ();
+			if (lastSceneName == "") {
+				playerRespawnPoint = player.transform.position;
+			} else {
+				playerRespawnPoint = GameObject.Find ("Door To " + lastSceneName).GetComponent<Transform> ().position;
+			}
 		}
 	}
 
 	private void spawnPlayer () {
 		if (player != null && playerRespawnPoint != null) {
-			player.transform.position = playerRespawnPoint.transform.position;
+			player.transform.position = playerRespawnPoint;
 		}
 	}
 

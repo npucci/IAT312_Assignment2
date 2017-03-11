@@ -31,7 +31,12 @@ public class Health : MonoBehaviour {
 	}
 
 	public void increaseHp(float recovery){
-		HP += recovery;
+		if (recovery + HP >= maxHP) {
+			HP = maxHP;
+		}
+		else {
+			HP += recovery;
+		}
 	}
 
 	public bool dead() {

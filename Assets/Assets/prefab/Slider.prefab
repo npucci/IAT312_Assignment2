@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 224146440778483242}
   - component: {fileID: 114345188853533422}
   - component: {fileID: 114560198226092678}
+  - component: {fileID: 225940033181226306}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -287,10 +288,10 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -199.5, y: 115}
-  m_SizeDelta: {x: 160, y: 20}
+  m_AnchorMin: {x: 0, y: 0.891841}
+  m_AnchorMax: {x: 0.31138974, y: 0.97400004}
+  m_AnchoredPosition: {x: -18.699997, y: 0.1000061}
+  m_SizeDelta: {x: 38.5, y: 0.19999695}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224253429545749934
 RectTransform:
@@ -343,7 +344,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 7.3, y: 0}
+  m_AnchoredPosition: {x: 7.299988, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224934802515923564
@@ -384,3 +385,14 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &225940033181226306
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1918760800999386}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

@@ -9,6 +9,7 @@ public class CanvasController : MonoBehaviour {
 	private CanvasGroup gameOverCanvas;
 	private CanvasGroup hudCanvas;
 	private CanvasGroup dialogueBox;
+	private CanvasGroup inventory;
 
 	private bool pause = false;
 	private bool hasDied = false;
@@ -23,6 +24,7 @@ public class CanvasController : MonoBehaviour {
 		gameOverCanvas = GameObject.Find ("GameOver").GetComponent<CanvasGroup> ();
 		hudCanvas = GameObject.Find ("HUD").GetComponent<CanvasGroup> ();
 		dialogueBox = GameObject.Find ("DialogueBox").GetComponent<CanvasGroup> ();
+		inventory = GameObject.Find ("Inventory").GetComponent<CanvasGroup> ();
 		initializeCanvas ();
 
 		player = GameObject.Find ("Player").GetComponent<Health> ();
@@ -33,10 +35,18 @@ public class CanvasController : MonoBehaviour {
 			pause = !pause;
 			if (pause) {
 				pauseGame ();
-			} 
-			else {
+			} else {
 				resumeGame ();
 			}
+		} 
+
+		else if (!hasDied && Input.GetKeyDown (KeyCode.Tab)) {
+			if (inventory.GetComponent<CanvasGroup> ().interactable == false) {
+				inventoryScreen ();
+			} else {
+				resumeGame ();
+			}
+
 		}
 
 		if (player.dead ()) {
@@ -67,6 +77,15 @@ public class CanvasController : MonoBehaviour {
 
 		// Enable Dialogue Box Canvas
 		enableCanvas(dialogueBox, true);
+
+		// Disable Inventory Canvas
+		enableCanvas(inventory, false);
+	}
+
+	private void inventoryScreen() {
+		Time.timeScale = 0f;
+		// Enable Inventoryt Canvas
+		enableCanvas (inventory, true);
 	}
 
 	private void pauseGame() {
@@ -87,6 +106,8 @@ public class CanvasController : MonoBehaviour {
 		enableCanvas(dialogueBox, true);
 		// Enable HUD Canvas
 		enableCanvas(hudCanvas, true);
+		// Disable Inventory Canvas
+		enableCanvas(inventory, false);
 	}
 
 	public void gameOver() {

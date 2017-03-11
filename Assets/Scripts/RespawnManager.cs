@@ -50,6 +50,7 @@ public class RespawnManager : MonoBehaviour {
 
 	private void spawnPlayer () {
 		if (player != null && playerRespawnPoint != null) {
+			player.GetComponent<Health> ().resetHealth ();
 			player.transform.position = playerRespawnPoint;
 		}
 	}

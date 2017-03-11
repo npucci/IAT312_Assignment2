@@ -22,7 +22,6 @@ public class PlayerEvasion : MonoBehaviour {
         dashTimer = new Timer(dashFrames);
 
         player = GameObject.Find("Player");
-        sr.flipX = true;
     }
 
     // Update is called once per frame

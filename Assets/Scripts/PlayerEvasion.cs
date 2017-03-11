@@ -24,9 +24,9 @@ public class PlayerEvasion : MonoBehaviour {
         player = GameObject.Find("Player");
         sr.flipX = true;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update() {
 
         dashTimer.updateTimer(Time.deltaTime);
 
@@ -51,11 +51,13 @@ public class PlayerEvasion : MonoBehaviour {
             else if (sr.flipX == false) {
                 rb.AddForce(-moveX * 50, ForceMode2D.Impulse);
                 dashTimer.startTimer();
+
             }
 
         }
-        else if (Input.GetMouseButtonUp(1)) {
+        else if (Input.GetMouseButtonUp(1) || dashTimer.stopped()) {
             Physics2D.IgnoreLayerCollision(8, 9, false);
+            dashing = false;
         }
 	}
 }

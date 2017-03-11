@@ -54,7 +54,7 @@ public class PlayerEvasion : MonoBehaviour {
             }
 
         }
-        else if (Input.GetMouseButtonUp(1)) {
+		else if (dashTimer.stopped()) { //Input.GetMouseButtonUp(1)) {
             Physics2D.IgnoreLayerCollision(8, 9, false);
         }
 	}

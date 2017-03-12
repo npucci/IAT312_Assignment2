@@ -6,11 +6,13 @@ public class PlayerCombat : Combat {
 	public float attackForce = 1f;
 	private SpriteRenderer sr;
 	private PlayerController pc;
+	private AudioSource audioSource;
 
 	void Start () {
 		base.Start ();
 		sr = GetComponent<SpriteRenderer> ();
 		pc = GetComponent<PlayerController> ();
+		audioSource = GetComponent<AudioSource> ();
 	}
 
 	void Update () {
@@ -42,12 +44,14 @@ public class PlayerCombat : Combat {
 	void OnTriggerStay2D(Collider2D coll)
 	{
 		if (attacking && coll.gameObject.name.Contains("Enemy") && sr.flipX && transform.position.x < coll.transform.position.x) {
+			audioSource.Play ();
 			coll.gameObject.GetComponent <Health>().decreaseHp(attackDamage);
 			applyForce (coll.gameObject.GetComponent<Rigidbody2D> ());
 			base.attackTimer.startTimer ();
 		}
 
 		else if (attacking && coll.gameObject.name.Contains("Enemy") && !sr.flipX && transform.position.x > coll.transform.position.x) {
+			audioSource.Play ();
 			coll.gameObject.GetComponent <Health>().decreaseHp(attackDamage);
 			applyForce (coll.gameObject.GetComponent<Rigidbody2D> ());
 			base.attackTimer.startTimer ();

@@ -39,8 +39,8 @@ public class PlayerController : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D> ();
 		sr = GetComponent<SpriteRenderer> ();
 		healthManager = GetComponent<Health> ();
-		sr.flipX = true;
 		anim = GetComponent<Animator> ();
+		sr.flipX = true;
 	}
 
 	void Update () {

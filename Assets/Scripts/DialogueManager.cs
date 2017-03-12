@@ -67,6 +67,7 @@ public class DialogueManager : MonoBehaviour {
 
 	private void enableBackground(bool enable) {
 		background.enabled = enable;                               //If the last line is reached, remove the dialogue box
+		background.transform.GetChild(0).GetComponent<Text>().enabled = enable; // "Press F" text
 	}
 
 	private void enablePortrait(bool enable) {
@@ -74,7 +75,7 @@ public class DialogueManager : MonoBehaviour {
 	}
 
 	private void enableNameBackground(bool enable) {
-		nameBackground.enabled = enable;                               //If the last line is reached, remove the dialogue box
+		nameBackground.enabled = enable; //If the last line is reached, remove the dialogue box
 	}
 
 	private void enableNameText(bool enable) {

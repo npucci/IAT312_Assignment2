@@ -1,59 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogueActivator : MonoBehaviour {
+	public string name;
+	public Image portrait;
+	private NarrativeEngine narrativeEngine;
 
-    public TextAsset textFile;
-
-    public int startLine;
-    public int endLine;
-
-    public bool playerActivateButton;
-    private bool waitForPlayer;
-
-    public DialogueManager dialogueAttach;
-
-	// Use this for initialization
 	void Start () {
-        dialogueAttach = FindObjectOfType<DialogueManager>();
-		
+		portrait = GetComponent<Image> ();
+        narrativeEngine = FindObjectOfType<NarrativeEngine>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
-        if (waitForPlayer == true && Input.GetKeyDown(KeyCode.E)) {
-
-            dialogueAttach.LoadNewScript(textFile);
-            dialogueAttach.lineTracker = startLine;
-            dialogueAttach.lastLine = endLine;
-
-            dialogueAttach.EnableDialogueBox();
-        }
-		
-	}
+	void Update () {}
 
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.name == "Player") {
-
-            if (playerActivateButton == true) {
-                waitForPlayer = true;
-                return;
-            }
-
-            dialogueAttach.LoadNewScript(textFile);
-            dialogueAttach.lineTracker = startLine;
-            dialogueAttach.lastLine = endLine;
-
-            dialogueAttach.EnableDialogueBox();
-
+		if (other.name == "Player" && Input.GetKeyDown(KeyCode.E)) { 
+			narrativeEngine.playDialogue (this);
         }
     }
 
-    void OnTriggerExit2D(Collider2D other) {
-        if (other.name == "Player") {
-            waitForPlayer = false;
-        }
-   }
+	void OnTriggerStay2D(Collider2D other) {
+		if (other.name == "Player" && Input.GetKeyDown(KeyCode.E)) { 
+			narrativeEngine.playDialogue (this);
+		}
+	}
+
+    void OnTriggerExit2D(Collider2D other) {}
 }

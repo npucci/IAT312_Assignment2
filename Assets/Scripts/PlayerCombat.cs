@@ -5,17 +5,19 @@ using UnityEngine;
 public class PlayerCombat : Combat {
 	public float attackForce = 1f;
 	private SpriteRenderer sr;
+	private PlayerController pc;
 
 	void Start () {
 		base.Start ();
 		sr = GetComponent<SpriteRenderer> ();
+		pc = GetComponent<PlayerController> ();
 	}
 
 	void Update () {
 		base.attackTimer.updateTimer (Time.deltaTime);
 
 		// if player is clicking the left mouse click, set attacking flag
-		if (base.attackTimer.stopped() && Input.GetMouseButtonDown (0)) {
+		if (pc.isPlayerMovementEnabled() && base.attackTimer.stopped() && Input.GetMouseButtonDown (0)) {
 			base.attacking = true;
 		} else {
 			base.attacking = false;

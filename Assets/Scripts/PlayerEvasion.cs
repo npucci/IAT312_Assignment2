@@ -13,12 +13,13 @@ public class PlayerEvasion : MonoBehaviour {
     private GameObject player;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
+	private PlayerController pc;
 
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-
+		pc = GetComponent<PlayerController> ();
         dashTimer = new Timer(dashFrames);
 
         player = GameObject.Find("Player");
@@ -32,15 +33,19 @@ public class PlayerEvasion : MonoBehaviour {
         Vector2 moveX = new Vector2(dashDistance, 0);
 
 		if (dashTimer.stopped()) {
+			if (dashing) {
+				sr.sortingOrder += 2;
+			}
 			dashing = false;
 		}
 		
-		if(!dashing && Input.GetMouseButtonDown(1)) {
+		if(pc.isPlayerMovementEnabled() && !dashing && Input.GetMouseButtonDown(1)) {
             dashing = true;
 			dashTimer.startTimer();
+			sr.sortingOrder -= 2;
         }
 
-        if (dashing == true) {
+		if (pc.isPlayerMovementEnabled() && dashing == true) {
             Physics2D.IgnoreLayerCollision(8, 9, true);
 			if (!dashTimer.stopped() && sr.flipX == true)
             {
@@ -51,8 +56,10 @@ public class PlayerEvasion : MonoBehaviour {
             }
 
         }
-
 		else if (dashTimer.stopped()) {
+			if (dashing) {
+				sr.sortingOrder += 2;
+			}
             Physics2D.IgnoreLayerCollision(8, 9, false);
             dashing = false;
         }

@@ -9,8 +9,8 @@ public class PlayerController : MonoBehaviour {
 	public float jumpSpeed = 10f;
 	public float maxVelocityX = 8f;
 	public float movementXEasing = 0.6f;
-	public bool enabledMove = true; // for dialogue system
 
+	private bool enabledMove = true; // for dialogue system
 	private bool grounded = false;
 	private Rigidbody2D rb;
 	private SpriteRenderer sr;
@@ -44,6 +44,10 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update () {
+		if (transform.parent == null) {
+			DontDestroyOnLoad (gameObject);
+		}
+
 		// pause player movement while dialogue is running, if selected by Dialogue Manager
 		if (!enabledMove) {
 			movingR = false;
@@ -162,5 +166,13 @@ public class PlayerController : MonoBehaviour {
 		if (transform.position.y > other.transform.position.y) {
 			grounded = false;
 		}
+	}
+
+	public void enablePlayerMovement(bool enable) {
+		enabledMove = enable;
+	}
+
+	public bool isPlayerMovementEnabled() {
+		return enabledMove;
 	}
 }

@@ -8,6 +8,7 @@ public class RespawnManager : MonoBehaviour {
 	private Vector3 playerRespawnPoint;
 	private string currentSceneName;
 
+	public float fallDamage = 1f;
 	public float deathDepth = -10f;
 
 	// Use this for initialization
@@ -26,8 +27,7 @@ public class RespawnManager : MonoBehaviour {
 		}
 
 		if (player.transform.GetComponent<Health> ().dead ()) {
-			respawnPlayer ();
-			player.transform.GetComponent<Health> ().resetHealth ();
+			spawnPlayer ();
 		}
 	}
 
@@ -50,12 +50,14 @@ public class RespawnManager : MonoBehaviour {
 
 	private void spawnPlayer () {
 		if (player != null && playerRespawnPoint != null) {
-			player.GetComponent<Health> ().resetHealth ();
 			player.transform.position = playerRespawnPoint;
 		}
 	}
 
 	private void respawnPlayer() {
-		spawnPlayer();
+		if (player != null && playerRespawnPoint != null) {
+			player.GetComponent<Health> ().decreaseHp (fallDamage);
+			player.transform.position = playerRespawnPoint;
+		}
 	}
 }

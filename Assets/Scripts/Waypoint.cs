@@ -25,6 +25,9 @@ public class Waypoint : MonoBehaviour {
 
 			if (SceneManager.GetActiveScene ().name != nextSceneName && i > -1) {
 				FindObjectOfType<GameManager> ().setLastSceneName (SceneManager.GetActiveScene().name);
+				GameObject player = FindObjectOfType<PlayerController> ().gameObject;
+				player.transform.parent = null;
+				DontDestroyOnLoad (player);
 				SceneManager.LoadScene (i);
 			}
 		} 

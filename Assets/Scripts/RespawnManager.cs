@@ -32,7 +32,7 @@ public class RespawnManager : MonoBehaviour {
 	}
 
 	private void findCorrectRespawnPoint () {
-		string lastSceneName = GameObject.Find("Game Manager").GetComponent<GameManager>().getLastSceneName ();
+		string lastSceneName = player.GetComponent<PlayerController>().getLastSceneName ();
 
 		if ((lastSceneName == "" || lastSceneName == "intro_cutscene") && currentSceneName == "level1") {
 			playerRespawnPoint = GameObject.Find ("Entrance").GetComponent<Transform> ().position;
@@ -49,13 +49,13 @@ public class RespawnManager : MonoBehaviour {
 	}
 
 	private void spawnPlayer () {
-		if (player != null && playerRespawnPoint != null) {
+		if (player != null) {
 			player.transform.position = playerRespawnPoint;
 		}
 	}
 
 	private void respawnPlayer() {
-		if (player != null && playerRespawnPoint != null) {
+		if (player != null) {
 			player.GetComponent<Health> ().decreaseHp (fallDamage);
 			player.transform.position = playerRespawnPoint;
 		}

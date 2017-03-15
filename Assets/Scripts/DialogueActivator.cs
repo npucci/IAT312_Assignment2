@@ -4,28 +4,24 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class DialogueActivator : MonoBehaviour {
-	public string name;
-	public Image portrait;
+	public string characterName;
+	public Sprite portrait;
 	private NarrativeEngine narrativeEngine;
 
 	void Start () {
-		portrait = GetComponent<Image> ();
+		portrait = GetComponent<SpriteRenderer> ().sprite;
         narrativeEngine = FindObjectOfType<NarrativeEngine>();
 	}
 
-	void Update () {}
-
     void OnTriggerEnter2D(Collider2D other) {
 		if (other.name == "Player" && Input.GetKeyDown(KeyCode.E)) { 
-			narrativeEngine.playDialogue (this);
+			narrativeEngine.playDialogue (portrait, characterName);
         }
     }
 
 	void OnTriggerStay2D(Collider2D other) {
 		if (other.name == "Player" && Input.GetKeyDown(KeyCode.E)) { 
-			narrativeEngine.playDialogue (this);
+			narrativeEngine.playDialogue (portrait, characterName);
 		}
 	}
-
-    void OnTriggerExit2D(Collider2D other) {}
 }

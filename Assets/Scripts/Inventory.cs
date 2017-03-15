@@ -18,6 +18,25 @@ public class Inventory : MonoBehaviour {
 		items.Add (itemName);
 	}
 
+	public bool hasItem(string itemName) {
+		for (int i = 0; i < items.Count; i++) {
+			if (items [i].Contains(itemName)) {
+				return true; 
+			}
+		}
+		return false;
+	}
+
+	public bool hasNumberOfItems(int n, string itemName) {
+		int count = 0;
+		for (int i = 0; i < items.Count; i++) {
+			if (items [i].Contains(itemName)) {
+				count++; 
+			}
+		}
+		return count >= n;
+	}
+
 	public string getItem(string itemName) {
 		int position = -1;
 		for (int i = 0; i< items.Count; i++) {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 	public static PlayerController instance; // for singleton object
@@ -9,7 +10,10 @@ public class PlayerController : MonoBehaviour {
 	public float jumpSpeed = 10f;
 	public float maxVelocityX = 8f;
 	public float movementXEasing = 0.6f;
+	public string playerName = "Player";
+	public Sprite portrait;
 
+	private string lastSceneName = "";
 	private bool enabledMove = true; // for dialogue system
 	private bool grounded = false;
 	private Rigidbody2D rb;
@@ -40,14 +44,14 @@ public class PlayerController : MonoBehaviour {
 		sr = GetComponent<SpriteRenderer> ();
 		healthManager = GetComponent<Health> ();
 		anim = GetComponent<Animator> ();
-		sr.flipX = true;
+		portrait = sr.sprite;
 	}
 
 	void Update () {
 		if (transform.parent == null) {
 			DontDestroyOnLoad (gameObject);
 		}
-
+	
 		// pause player movement while dialogue is running, if selected by Dialogue Manager
 		if (!enabledMove) {
 			movingR = false;
@@ -60,19 +64,19 @@ public class PlayerController : MonoBehaviour {
 		//Player's movement based on WASD keys and Space Bar
 		if (Input.GetKeyDown (KeyCode.D)) {
 			movingR = true;
-			//anim.CrossFade ("player_run", 0f);
+			anim.CrossFade ("player_run", 0f);
 		} 
 		if (Input.GetKeyDown (KeyCode.A)) {
 			movingL = true;
-			//anim.CrossFade ("player_run", 0f);
+			anim.CrossFade ("player_run", 0f);
 		} 
 		if (Input.GetKeyUp (KeyCode.D)) {
 			movingR = false;
-			//anim.CrossFade ("player_idle", 0f);
+			anim.CrossFade ("player_idle", 0f);
 		}
 		if (Input.GetKeyUp (KeyCode.A)) {
 			movingL = false;
-			//anim.CrossFade ("player_idle", 0f);
+			anim.CrossFade ("player_idle", 0f);
 		} 
 
 		if (Input.GetKeyDown (KeyCode.Space) && grounded) {
@@ -85,7 +89,7 @@ public class PlayerController : MonoBehaviour {
 		} else if (grounded) {
 			anim.CrossFade ("player_idle", 0f);
 		} else {
-			anim.CrossFade ("player_jump", 0f);
+			//anim.CrossFade ("player_jump", 0f);
 		}
 	}
 
@@ -96,12 +100,12 @@ public class PlayerController : MonoBehaviour {
 
 		if (movingR) {
 			xSpeed = speed;
-			sr.flipX = true;
+			sr.flipX = false;
 		} 
 
 		else if (movingL) {
 			xSpeed = -speed;
-			sr.flipX = false;
+			sr.flipX = true;
 		} 
 
 		// if player is not moving, slow down and stop
@@ -174,5 +178,13 @@ public class PlayerController : MonoBehaviour {
 
 	public bool isPlayerMovementEnabled() {
 		return enabledMove;
+	}
+
+	public string getLastSceneName() {
+		return lastSceneName;
+	}
+
+	public void setLastSceneName(string sceneName) {
+		lastSceneName = sceneName;
 	}
 }

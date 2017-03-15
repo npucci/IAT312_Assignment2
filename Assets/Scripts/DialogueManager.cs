@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour {
 	// child component fields
@@ -47,17 +47,19 @@ public class DialogueManager : MonoBehaviour {
 		if (lineTracker != -1 && Input.GetKeyDown(KeyCode.F)) {
             lineTracker += 1; //Display the next line when the corresponding key is hit
         }
-	
+
 		if (lineTracker >= textLines.Count) {
-			if (EditorSceneManager.GetActiveScene ().name != "intro_cutscene") {
+			if (SceneManager.GetActiveScene ().name != "intro_cutscene") {
 				enableAll (false);
 			}
 			player.enablePlayerMovement (true);
 			lineTracker = -1;
-		} else if(lineTracker > -1 && lineTracker < textLines.Count){
+		} else if (lineTracker > -1 && lineTracker < textLines.Count) {
 			enableAll (true);
 			player.enablePlayerMovement (false);
-			dialogueText.text = textLines[lineTracker];
+			dialogueText.text = textLines [lineTracker];
+		} else {
+			reset ();
 		}
     }
 
@@ -98,5 +100,12 @@ public class DialogueManager : MonoBehaviour {
 		textLines = lines;
 		lineTracker = 0;
 		enableAll (true);
+	}
+
+	public void reset() {
+		enableAll (false);
+		player.enablePlayerMovement (true);
+		textLines.Clear ();
+		lineTracker = -1;
 	}
 }

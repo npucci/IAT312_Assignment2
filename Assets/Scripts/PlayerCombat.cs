@@ -28,13 +28,13 @@ public class PlayerCombat : Combat {
 
 	void OnTriggerEnter2D(Collider2D coll)
 	{
-		if (attacking && coll.gameObject.name.Contains("Enemy") && sr.flipX && transform.position.x < coll.transform.position.x) {
+		if (attacking && coll.gameObject.name.Contains("Enemy") && !sr.flipX && transform.position.x < coll.transform.position.x) {
 			coll.gameObject.GetComponent <Health>().decreaseHp(attackDamage);
 			applyForce (coll.gameObject.GetComponent<Rigidbody2D> ());
 			base.attackTimer.startTimer ();
 		}
 
-		else if (attacking && coll.gameObject.name.Contains("Enemy") && !sr.flipX && transform.position.x > coll.transform.position.x) {
+		else if (attacking && coll.gameObject.name.Contains("Enemy") && sr.flipX && transform.position.x > coll.transform.position.x) {
 			coll.gameObject.GetComponent <Health>().decreaseHp(attackDamage);
 			applyForce (coll.gameObject.GetComponent<Rigidbody2D> ());
 			base.attackTimer.startTimer ();
@@ -43,14 +43,14 @@ public class PlayerCombat : Combat {
 
 	void OnTriggerStay2D(Collider2D coll)
 	{
-		if (attacking && coll.gameObject.name.Contains("Enemy") && sr.flipX && transform.position.x < coll.transform.position.x) {
+		if (attacking && coll.gameObject.name.Contains("Enemy") && !sr.flipX && transform.position.x < coll.transform.position.x) {
 			audioSource.Play ();
 			coll.gameObject.GetComponent <Health>().decreaseHp(attackDamage);
 			applyForce (coll.gameObject.GetComponent<Rigidbody2D> ());
 			base.attackTimer.startTimer ();
 		}
 
-		else if (attacking && coll.gameObject.name.Contains("Enemy") && !sr.flipX && transform.position.x > coll.transform.position.x) {
+		else if (attacking && coll.gameObject.name.Contains("Enemy") && sr.flipX && transform.position.x > coll.transform.position.x) {
 			audioSource.Play ();
 			coll.gameObject.GetComponent <Health>().decreaseHp(attackDamage);
 			applyForce (coll.gameObject.GetComponent<Rigidbody2D> ());
@@ -61,9 +61,9 @@ public class PlayerCombat : Combat {
 	void applyForce(Rigidbody2D rb) {
 		int direction = 1;
 		if (gameObject.GetComponent<SpriteRenderer> ().flipX) {
-			direction = 1;
-		} else {
 			direction = -1;
+		} else {
+			direction = 1;
 		}
 		Vector2 force = new Vector2 (direction * base.attackDamage * attackForce, base.attackDamage * attackForce);
 		rb.AddForce (force, ForceMode2D.Impulse);

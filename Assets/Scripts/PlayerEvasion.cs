@@ -47,11 +47,11 @@ public class PlayerEvasion : MonoBehaviour {
 
 		if (pc.isPlayerMovementEnabled() && dashing == true) {
             Physics2D.IgnoreLayerCollision(8, 9, true);
-			if (!dashTimer.stopped() && sr.flipX == true)
+			if (!dashTimer.stopped() && !sr.flipX)
             {
                 rb.AddForce(moveX * 50, ForceMode2D.Impulse);
             }
-			else if (!dashTimer.stopped() && sr.flipX == false) {
+			else if (!dashTimer.stopped() && sr.flipX) {
                 rb.AddForce(-moveX * 50, ForceMode2D.Impulse);
             }
 

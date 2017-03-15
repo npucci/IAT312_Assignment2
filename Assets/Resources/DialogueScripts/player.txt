@@ -1,0 +1,16 @@
+[intro]
+Almost there ... 
+I have finally found the Abandoned Castle we always talked about,
+in search of your cure, the "Legendary Flower of Healing."
+I hope the legend is true, that I may see your smile again.
+I'll find a way, I promise ...
+[intro]
+
+[beginning_monologue]
+This castle is creepier than I thought, 
+I hope I find that Flower soon ...
+[beginning_monologue]
+
+[entrance]
+I can't leave until I get that flower ...
+[entrance]

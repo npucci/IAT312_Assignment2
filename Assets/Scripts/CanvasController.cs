@@ -133,11 +133,11 @@ public class CanvasController : MonoBehaviour {
 
 	public void goToMainMenu() {
 		Destroy (GameObject.Find("Player"));
-		Application.LoadLevel (0);
+		SceneManager.LoadScene (0);
 	}
 
 	public void restartLevel() {
 		Destroy (GameObject.Find("Player"));
-		Application.LoadLevel (SceneManager.GetActiveScene().buildIndex);
+		SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex);
 	}
 }

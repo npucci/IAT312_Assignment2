@@ -14,7 +14,7 @@ public class IntroCutSceneActivator : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!played) {
-			narrativeEngine.playIntroCutScene ();
+			//narrativeEngine.playIntroCutScene ();
 			played = true;
 		}
 	}

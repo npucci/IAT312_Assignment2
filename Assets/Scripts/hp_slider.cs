@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class hp_slider : MonoBehaviour {
 	
 	private Health playerHealth;
-	private int healthIndex = 4; // 4 == full, 0 == empty
 	public Sprite[] HPState;
 	public float scalex,index; 
 	public Slider targetSliderOject; 

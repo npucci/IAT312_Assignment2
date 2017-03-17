@@ -187,4 +187,7 @@ public class PlayerController : MonoBehaviour {
 	public void setLastSceneName(string sceneName) {
 		lastSceneName = sceneName;
 	}
+	public void keepjumping(){
+		jumping = true;
+	}
 }

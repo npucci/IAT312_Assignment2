@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class rotate : MonoBehaviour {
 
-	public PlayerController player;
+	public Health player;
 	public float initialangle;
 	public float speed;
+	public bool damage_cause;
+	public float attackDamage;
 
+
+	void OnCollisionEnter2D(Collision2D col)
+	{
+		if (col.gameObject.name == "Player") {
+			if (damage_cause) {
+				col.gameObject.GetComponent <Health> ().decreaseHp (attackDamage);
+			}
+		}
+	}
 	// Use this for initialization
 	void Start () {
 		initialangle = 0;

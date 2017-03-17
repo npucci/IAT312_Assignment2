@@ -26,6 +26,11 @@ public class PlayerController : MonoBehaviour {
 	private bool movingL = false;
 	private bool spaceBar = false;
 	private bool jumping = false;
+	public bool conveyorR = false;
+	public bool conveyorL = false;
+	private float conveyor_speed;
+
+
 
 	void Awake() {
 		if (instance == null) {
@@ -95,12 +100,23 @@ public class PlayerController : MonoBehaviour {
 		} else if (grounded && !dash.isDashing ()) {
 			anim.CrossFade ("player_idle", 0f);
 		}
+
+		if (conveyorR) {
+			transform.Translate(Vector2.right * Time.deltaTime*conveyor_speed); 
+			sr.flipX = false;
+		} 
+
+		else if (conveyorL) {
+			transform.Translate(Vector2.left * Time.deltaTime*conveyor_speed); 
+			sr.flipX = true;
+		}
 	}
 
 	// updates only physics when necessary
 	void FixedUpdate() {
 		float jSpeed = 0f;
 		float xSpeed = 0f;
+
 
 		if (movingR) {
 			xSpeed = speed;
@@ -111,6 +127,7 @@ public class PlayerController : MonoBehaviour {
 			xSpeed = -speed;
 			sr.flipX = true;
 		} 
+
 
 		// if player is not moving, slow down and stop
 		else {
@@ -191,4 +208,18 @@ public class PlayerController : MonoBehaviour {
 	public void setLastSceneName(string sceneName) {
 		lastSceneName = sceneName;
 	}
+	public void mover(){
+		conveyorR = true;
+	}
+	public void moveL(){
+		conveyorL = true;
+	}
+	public void stop_fromconveyor(){
+		conveyorR = false;
+		conveyorL = false;
+	}
+	public void setconveyor_speed(float conveyorspeed){
+		conveyor_speed = conveyorspeed;
+	}
+
 }

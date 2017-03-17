@@ -19,9 +19,12 @@ public class PlayerController : MonoBehaviour {
 	private Rigidbody2D rb;
 	private SpriteRenderer sr;
 	private Health healthManager;
+	private PlayerEvasion dash;
+	private PlayerCombat attack; 
 	private Animator anim;
 	private bool movingR = false;
 	private bool movingL = false;
+	private bool spaceBar = false;
 	private bool jumping = false;
 
 	void Awake() {
@@ -43,6 +46,8 @@ public class PlayerController : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D> ();
 		sr = GetComponent<SpriteRenderer> ();
 		healthManager = GetComponent<Health> ();
+		dash = GetComponent<PlayerEvasion> ();
+		attack = GetComponent<PlayerCombat> ();
 		anim = GetComponent<Animator> ();
 		portrait = sr.sprite;
 	}
@@ -51,7 +56,7 @@ public class PlayerController : MonoBehaviour {
 		if (transform.parent == null) {
 			DontDestroyOnLoad (gameObject);
 		}
-	
+
 		// pause player movement while dialogue is running, if selected by Dialogue Manager
 		if (!enabledMove) {
 			movingR = false;
@@ -64,32 +69,31 @@ public class PlayerController : MonoBehaviour {
 		//Player's movement based on WASD keys and Space Bar
 		if (Input.GetKeyDown (KeyCode.D)) {
 			movingR = true;
-			anim.CrossFade ("player_run", 0f);
 		} 
 		if (Input.GetKeyDown (KeyCode.A)) {
 			movingL = true;
-			anim.CrossFade ("player_run", 0f);
 		} 
 		if (Input.GetKeyUp (KeyCode.D)) {
 			movingR = false;
-			anim.CrossFade ("player_idle", 0f);
 		}
 		if (Input.GetKeyUp (KeyCode.A)) {
 			movingL = false;
-			anim.CrossFade ("player_idle", 0f);
 		} 
 
-		if (Input.GetKeyDown (KeyCode.Space) && grounded) {
-			jumping = true;
-			//anim.CrossFade ("player_jump", 0f);
+		if ((Input.GetKeyDown (KeyCode.Space) && grounded)) {
+			spaceBar = true;
 		} 
 
-		if (grounded && (movingR || movingL)) {
+		if (attack.isAttacking ()) {
+			anim.CrossFade ("player_attack", 0f);
+		} else if (dash.isDashing ()) {
+			anim.CrossFade ("player_dash", 0f);
+		} else if (jumping) {
+			anim.CrossFade ("player_jump", 0f);
+		} else if (grounded && (movingR || movingL) && !dash.isDashing ()) {
 			anim.CrossFade ("player_run", 0f);
-		} else if (grounded) {
+		} else if (grounded && !dash.isDashing ()) {
 			anim.CrossFade ("player_idle", 0f);
-		} else {
-			//anim.CrossFade ("player_jump", 0f);
 		}
 	}
 
@@ -122,11 +126,11 @@ public class PlayerController : MonoBehaviour {
 				rb.velocity = new Vector2 (rb.velocity.x + movementXEasing, rb.velocity.y);
 			}
 		}
-
-		// if player is jumping
-		if (jumping) {
+			
+		if (spaceBar) {
+			jumping = true;
 			jSpeed = jumpSpeed;
-			jumping = false;
+			spaceBar = false;
 		}
 			
 		Vector2 moveX = new Vector2(xSpeed, 0);     
@@ -162,7 +166,7 @@ public class PlayerController : MonoBehaviour {
 	void OnCollisionStay2D(Collision2D other) {
 		if (transform.position.y > other.transform.position.y) {
 			grounded = true;
-			jumping = false;
+			//jumping = false;
 		}
 	}
 

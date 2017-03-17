@@ -20,8 +20,6 @@ public class falling_obstacle : MonoBehaviour {
 		if (col.gameObject.name == "Player") {
 			col.gameObject.GetComponent <Health>().decreaseHp(attackDamage);
 		}
-
-
 	}
 	// Update is called once per frame
 	void Update () {

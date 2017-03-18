@@ -5,7 +5,7 @@ using UnityEngine;
 public class AICombat : Combat {
 
 	void Update() {
-		attackTimer.updateTimer (Time.deltaTime);
+		base.attackTimer.updateTimer (Time.deltaTime);
 	}
 
 	void OnTriggerEnter2D(Collider2D coll)

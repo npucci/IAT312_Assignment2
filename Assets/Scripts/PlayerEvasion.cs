@@ -10,19 +10,18 @@ public class PlayerEvasion : MonoBehaviour {
     public Timer dashTimer;
 
     private bool dashing = false;
-    private GameObject player;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
 	private PlayerController pc;
+	private Animator anim;
 
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
 		pc = GetComponent<PlayerController> ();
+		anim = GetComponent<Animator> ();
         dashTimer = new Timer(dashFrames);
-
-        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -63,5 +62,9 @@ public class PlayerEvasion : MonoBehaviour {
             Physics2D.IgnoreLayerCollision(8, 9, false);
             dashing = false;
         }
+	}
+
+	public bool isDashing() {
+		return dashing;
 	}
 }

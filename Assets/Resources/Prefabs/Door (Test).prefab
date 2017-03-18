@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7fc79102c3b3764d8a63d782f1783eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: level2
+  nextSceneName: library
   locked: 0
   keyItemName: none
 --- !u!114 &114965431562581506
@@ -116,7 +116,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 9a9d2882f34bdce418749caba9e73b60, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -142,6 +142,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 17.510752, y: -17.082933}
+  m_AnchoredPosition: {x: 23.5, y: 37.17}
   m_SizeDelta: {x: 0.32, y: 0.3}
   m_Pivot: {x: 0.5, y: 0.5}

@@ -52,7 +52,6 @@ public class PlayerCombat : Combat {
 	void OnTriggerStay2D(Collider2D coll)
 	{
 		if (hasClicked && !base.attackTimer.stopped () &&  coll.gameObject.name.Contains("Enemy") && !sr.flipX && transform.position.x < coll.transform.position.x) {
-			Debug.Log (hasClicked);
 			audioSource.Play ();
 			coll.gameObject.GetComponent <Health>().decreaseHp(attackDamage);
 			applyForce (coll.gameObject.GetComponent<Rigidbody2D> ());

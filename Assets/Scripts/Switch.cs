@@ -22,17 +22,7 @@ public class Switch : MonoBehaviour {
 			Debug.Log ("Switch Pressed");
 			turnOnMechanisms ();
 		}
-	}
 
-	void OnTriggerStay2D (Collider2D coll) {
-		if (!targetSwitch && !switchOn && coll.transform.gameObject.name == "Player" && Input.GetKeyDown(KeyCode.E)) {
-			switchOn = true;
-			Debug.Log ("Switch Pressed");
-			turnOnMechanisms ();
-		}
-	}
-
-	void OnCollisionEnter2D (Collision2D coll) {
 		if(targetSwitch && coll.gameObject.name.Contains("Arrow")) {
 			switchOn = true;
 			Debug.Log ("Switch Target Hit");
@@ -40,7 +30,14 @@ public class Switch : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionStay2D (Collision2D coll) {
+	void OnTriggerStay2D (Collider2D coll) {
+		Debug.Log ("Switch Target Hit");
+		if (!targetSwitch && !switchOn && coll.transform.gameObject.name == "Player" && Input.GetKeyDown(KeyCode.E)) {
+			switchOn = true;
+			Debug.Log ("Switch Pressed");
+			turnOnMechanisms ();
+		}
+
 		if(targetSwitch && coll.gameObject.name.Contains("Arrow")) {
 			switchOn = true;
 			Debug.Log ("Switch Target Hit");

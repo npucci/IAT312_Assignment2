@@ -509,6 +509,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wait_time: 0
+  upper_range: 0
+  lower_range: 0
 --- !u!1001 &768626653
 Prefab:
   m_ObjectHideFlags: 0
@@ -822,6 +824,26 @@ Prefab:
     - target: {fileID: 4285445175672604, guid: 8c56b8fc3b5f3477983fa80f666b9b4a, type: 2}
       propertyPath: m_RootOrder
       value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 114394872848696352, guid: 8c56b8fc3b5f3477983fa80f666b9b4a,
+        type: 2}
+      propertyPath: upper_range
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114394872848696352, guid: 8c56b8fc3b5f3477983fa80f666b9b4a,
+        type: 2}
+      propertyPath: lower_range
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114394872848696352, guid: 8c56b8fc3b5f3477983fa80f666b9b4a,
+        type: 2}
+      propertyPath: wait_time
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 108340919742259154, guid: 8c56b8fc3b5f3477983fa80f666b9b4a,
+        type: 2}
+      propertyPath: m_Intensity
+      value: 4.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c56b8fc3b5f3477983fa80f666b9b4a, type: 2}

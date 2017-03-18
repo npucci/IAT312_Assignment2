@@ -463,11 +463,11 @@ Prefab:
     - target: {fileID: 224761076569221374, guid: 1e0eee9ad5a2f4d418b352e7d17a5dff,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 236.95128
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1441443663044782, guid: 1e0eee9ad5a2f4d418b352e7d17a5dff, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224111690465483546, guid: 1e0eee9ad5a2f4d418b352e7d17a5dff,
         type: 2}

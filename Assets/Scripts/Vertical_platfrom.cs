@@ -6,6 +6,7 @@ public class Vertical_platfrom : MonoBehaviour {
 	private Vector3 pos;
 	private Vector3 origin;
 	private int direction; // describes the direction of movement, up == 1, down == -1
+	private bool movement = true;
 
 	public bool startGoingUp = true;
 	public float topborder,bottomborder,speed;
@@ -31,7 +32,9 @@ public class Vertical_platfrom : MonoBehaviour {
 				direction = 1;
 		}
 
-		transform.Translate(Vector3.up * direction * speed * Time.deltaTime);
+		if (movement) { 
+			transform.Translate (Vector3.up * direction * speed * Time.deltaTime);
+		}
 	}
 
 	// make objects resting on top to move with platform
@@ -44,5 +47,13 @@ public class Vertical_platfrom : MonoBehaviour {
 	// if player jumps off platform, they no longer move with platform
 	void OnTriggerExit2D(Collider2D other) {
 		other.transform.parent = null;
+	}
+
+	public void stopMovement () {
+		movement = false;
+	}
+
+	public void startMovement () {
+		movement = true;
 	}
 }

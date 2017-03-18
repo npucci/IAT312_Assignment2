@@ -6,6 +6,7 @@ public class Horizon_plateform : MonoBehaviour {
 	private Vector3 pos;
 	private Vector3 origin;
 	private int direction = 1; // 1 == right, -1 == left
+	private bool movement = true;
 
 	public bool startGoingRight = true;
 	public float leftborder,rightborder,speed;
@@ -28,7 +29,9 @@ public class Horizon_plateform : MonoBehaviour {
 		else if (pos.x >= origin.x + rightborder) {
 			direction = 1;
 		}
-		transform.Translate (Vector2.left * direction * speed * Time.deltaTime);
+		if (movement) {
+			transform.Translate (Vector2.left * direction * speed * Time.deltaTime);
+		}
 	}
 
 	// make objects resting on top to move with platform
@@ -42,5 +45,13 @@ public class Horizon_plateform : MonoBehaviour {
 	// relative to the horizontal position of the platform
 	void OnTriggerExit2D(Collider2D other) {
 		other.transform.parent = null;
+	}
+
+	public void stopMovement () {
+		movement = false;
+	}
+
+	public void startMovement () {
+		movement = true;
 	}
 }

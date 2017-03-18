@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114591568292346224}
   - component: {fileID: 114325668586891120}
   - component: {fileID: 114961137745538318}
+  - component: {fileID: 114092180483607386}
   - component: {fileID: 114690612213037178}
   - component: {fileID: 114109147446438614}
   - component: {fileID: 50668857599754248}
@@ -45,7 +46,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1068288954228052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.0347886, y: 9.6, z: 0}
+  m_LocalPosition: {x: -11.4, y: 6.71, z: 0}
   m_LocalScale: {x: 0.74786186, y: 0.74786186, z: 0.74786186}
   m_Children: []
   m_Father: {fileID: 0}
@@ -196,6 +197,23 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114092180483607386
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1068288954228052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48948f07a7b2c24a9cd696515ea5962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ArrowPrefabs: {fileID: 1192603330692162, guid: 6b7fa20139fbd5942985326989500eda,
+    type: 2}
+  ArrowInstantiatePoint: {fileID: 4686163787522182}
+  fireRate: 0.001
+  maxArrow: 10
+  numArrow: 10
 --- !u!114 &114109147446438614
 MonoBehaviour:
   m_ObjectHideFlags: 1

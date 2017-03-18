@@ -463,11 +463,11 @@ Prefab:
     - target: {fileID: 224761076569221374, guid: 1e0eee9ad5a2f4d418b352e7d17a5dff,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 236.95128
       objectReference: {fileID: 0}
     - target: {fileID: 1441443663044782, guid: 1e0eee9ad5a2f4d418b352e7d17a5dff, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224111690465483546, guid: 1e0eee9ad5a2f4d418b352e7d17a5dff,
         type: 2}
@@ -549,7 +549,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8991e102492a7ff4f857c442edc16ead, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8b15c84aa82fa3d499590f08ca1138b3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -628,7 +628,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 8991e102492a7ff4f857c442edc16ead, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8b15c84aa82fa3d499590f08ca1138b3, type: 3}
   m_Color: {r: 0.27205884, g: 0.27205884, b: 0.27205884, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -824,7 +824,7 @@ Prefab:
     - target: {fileID: 114639620941823892, guid: ba6217635d8e69d47b9da44c7883afc4,
         type: 2}
       propertyPath: nextSceneName
-      value: level1
+      value: courtyard
       objectReference: {fileID: 0}
     - target: {fileID: 212997440928052006, guid: ba6217635d8e69d47b9da44c7883afc4,
         type: 2}
@@ -1306,7 +1306,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 8991e102492a7ff4f857c442edc16ead, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8b15c84aa82fa3d499590f08ca1138b3, type: 3}
   m_Color: {r: 0.27205884, g: 0.27205884, b: 0.27205884, a: 1}
   m_FlipX: 0
   m_FlipY: 0

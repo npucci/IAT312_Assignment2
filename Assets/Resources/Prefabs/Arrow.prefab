@@ -51,7 +51,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1192603330692162}
   m_BodyType: 0
-  m_Simulated: 1
+  m_Simulated: 0
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -120,8 +120,13 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+<<<<<<< HEAD
   m_SortingOrder: 12
   m_Sprite: {fileID: 21300000, guid: d8fd5ea550aef0e4ba16eacf7ec3291a, type: 3}
+=======
+  m_SortingOrder: 9
+  m_Sprite: {fileID: 21300000, guid: 0ba8b4a6ac3dd4e5eb01ca5b3e6021f5, type: 3}
+>>>>>>> e0ab867b05010657dc6154d40b76d127eacda905
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

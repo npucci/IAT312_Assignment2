@@ -98,7 +98,7 @@ public class Hard_enemy : MonoBehaviour {
 	void OnTriggerStay2D(Collider2D Coll)
 	{
 		if (Coll.gameObject.name == "Player") {
-			Coll.gameObject.GetComponent<Health>().decreaseHp(attackDamage);
+			Coll.gameObject.GetComponent<Health>().decreaseHp(attackDamage/10);
 		}
 	}
 }

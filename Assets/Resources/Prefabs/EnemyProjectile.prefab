@@ -21,10 +21,10 @@ GameObject:
   - component: {fileID: 4688260074193502}
   - component: {fileID: 114221635143619106}
   - component: {fileID: 212286410293485146}
-  - component: {fileID: 50679672645127726}
   - component: {fileID: 61986302621036832}
+  - component: {fileID: 50204470543868082}
   m_Layer: 0
-  m_Name: EnemyPro
+  m_Name: EnemyProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +43,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50679672645127726
+--- !u!50 &50204470543868082
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
@@ -72,7 +72,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
@@ -88,8 +88,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0388fc720f121154c91d5ee32f3f27ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireDistance: 1
+  fireDistance: 30
   proDamage: 1
+  torque: 0
 --- !u!212 &212286410293485146
 SpriteRenderer:
   m_ObjectHideFlags: 1

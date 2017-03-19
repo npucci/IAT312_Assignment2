@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 212286410293485146}
   - component: {fileID: 61986302621036832}
   - component: {fileID: 50204470543868082}
+  - component: {fileID: 114197790494239850}
   m_Layer: 0
   m_Name: EnemyProjectile
   m_TagString: Untagged
@@ -72,12 +73,12 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1.6099999, y: 0.49}
---- !u!114 &114221635143619106
+--- !u!114 &114197790494239850
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -85,12 +86,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1465218229585380}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2507e46e895ffd4da4acd2468a5560e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frequency: 20
+  magnitude: 0.5
+  fireDistance: 1
+  proDamage: 1
+--- !u!114 &114221635143619106
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1465218229585380}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0388fc720f121154c91d5ee32f3f27ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireDistance: 30
+  fireDistance: 1
   proDamage: 1
-  torque: 0
 --- !u!212 &212286410293485146
 SpriteRenderer:
   m_ObjectHideFlags: 1

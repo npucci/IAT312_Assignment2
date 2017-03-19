@@ -21,6 +21,10 @@ GameObject:
   - component: {fileID: 4363343541522454}
   - component: {fileID: 212628429758787048}
   - component: {fileID: 114379067608820426}
+  - component: {fileID: 114254151343750706}
+  - component: {fileID: 50431918775221494}
+  - component: {fileID: 61423374517370622}
+  - component: {fileID: 114674095603460958}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: Untagged
@@ -36,12 +40,72 @@ Transform:
   m_GameObject: {fileID: 1096102491079252}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 24.908255, y: 2.168838, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50431918775221494
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1096102491079252}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &61423374517370622
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1096102491079252}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 7.2, y: 7.2}
+--- !u!114 &114254151343750706
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1096102491079252}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0388fc720f121154c91d5ee32f3f27ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireDistance: 30
+  proDamage: 1
 --- !u!114 &114379067608820426
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1096102491079252}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aabd9a3d8e85145688b6d099a337b111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireDistance: 5
+  arrowDamage: 1
+--- !u!114 &114674095603460958
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -49,11 +113,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1096102491079252}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aabd9a3d8e85145688b6d099a337b111, type: 3}
+  m_Script: {fileID: 11500000, guid: a2507e46e895ffd4da4acd2468a5560e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireDistance: 5
-  arrowDamage: 1
+  frequency: 20
+  magnitude: 0.5
+  fireDistance: 30
+  proDamage: 1
 --- !u!212 &212628429758787048
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -84,7 +150,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 7
+  m_SortingOrder: 9
   m_Sprite: {fileID: 21300000, guid: 7098a450644d24caa9b6f794f929d3c3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

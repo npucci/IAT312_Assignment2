@@ -78,10 +78,10 @@ public class Hard_enemy : MonoBehaviour {
 		}
 		if (follow == true) {
 			if (player.getposition ().x < pos.x) {
-				transform.Translate (Vector2.left * speed/10);
+				transform.Translate (Vector2.left * speed/100);
 			}
 			if (player.getposition ().x > pos.x) {
-				transform.Translate (Vector2.right * speed/10);
+				transform.Translate (Vector2.right * speed/100);
 			}
 			
 			

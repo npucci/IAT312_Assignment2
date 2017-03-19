@@ -8,7 +8,7 @@ public class EnemyProjectileWave : MonoBehaviour
     private Vector2 moveWave;
     private Vector2 moveX;
     private Rigidbody2D rb;
-    private SpriteRenderer playersr;
+    private float playerPos;
     private SpriteRenderer sr;
 
     public float frequency = 20.0f;
@@ -22,11 +22,11 @@ public class EnemyProjectileWave : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
 
-        playersr = GameObject.Find("Player").GetComponent<SpriteRenderer>();
+        playerPos = GameObject.Find("Player").transform.position.x;
 
         int direction = 1;
 
-        if (playersr.flipX == true)
+        if (transform.position.x > playerPos)
         {
             direction = -1;
 

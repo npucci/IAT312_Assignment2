@@ -7,8 +7,8 @@ public class EnemyProjectileMovement : MonoBehaviour
 
     private Vector2 moveX;
     private Rigidbody2D rb;
-    private SpriteRenderer playersr;
     private SpriteRenderer sr;
+    private float playerPos;
 
     public float fireDistance = 30.0f;
     public float proDamage = 1.0f;
@@ -19,11 +19,11 @@ public class EnemyProjectileMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
 
-        playersr = GameObject.Find("Player").GetComponent<SpriteRenderer>();
+        playerPos = GameObject.Find("Player").transform.position.x;
 
         int direction = 1;
 
-        if (playersr.flipX == true)
+        if (transform.position.x > playerPos)
         {
             direction = -1;
 

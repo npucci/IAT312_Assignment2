@@ -23,9 +23,8 @@ public class falling_obstacle : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-		if (Mathf.Abs(player.getposition ().x-gameObject.transform.localPosition.x) < distance) {
-			fall = true;
-		}
+
+
 
 
 	}

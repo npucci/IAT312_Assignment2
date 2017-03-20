@@ -5,11 +5,16 @@ using UnityEngine;
 public class Switch : MonoBehaviour {
 	public GameObject mechanism;
 	public bool targetSwitch = false;
-
 	public bool switchOn = false;
+	private SpriteRenderer sr,platform;
+	private Animator anim;
+
 
 	void Start() {
 		turnOffMechanisms ();
+		sr = GetComponent<SpriteRenderer> ();
+		platform = mechanism.GetComponent<SpriteRenderer> ();
+		anim = GetComponent<Animator> ();
 	}
 
 	void Update() {
@@ -19,12 +24,16 @@ public class Switch : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D coll) {
 		if (!targetSwitch && !switchOn && coll.transform.gameObject.name == "Player" && Input.GetKeyDown(KeyCode.E)) {
 			switchOn = true;
+			anim.CrossFade ("turnon", 0f);
+			platform.color = new Color (255f, 0f, 0f, 255f);
 			Debug.Log ("Switch Pressed");
 			turnOnMechanisms ();
 		}
 
 		if(targetSwitch && coll.gameObject.name.Contains("Arrow")) {
 			switchOn = true;
+			sr.color = new Color (255f, 0f, 0f, 255f);
+			platform.color = new Color (255f, 0f, 0f, 255f);
 			Debug.Log ("Switch Target Hit");
 			turnOnMechanisms ();
 		}
@@ -34,6 +43,8 @@ public class Switch : MonoBehaviour {
 		Debug.Log ("Switch Target Hit");
 		if (!targetSwitch && !switchOn && coll.transform.gameObject.name == "Player" && Input.GetKeyDown(KeyCode.E)) {
 			switchOn = true;
+			anim.CrossFade ("turnon", 0f);
+			platform.color = new Color (255f, 0f, 0f, 255f);
 			Debug.Log ("Switch Pressed");
 			turnOnMechanisms ();
 		}

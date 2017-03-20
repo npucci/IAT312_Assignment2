@@ -10,7 +10,7 @@ public class Alchemist : MonoBehaviour {
 	private Health healthManager;
 	public GameObject background_before;
 
-	public float speed;
+	public float speed,initialx;
 	public GameObject FlowerPrefabs;
 	public Transform FlowerInstantiate;
 	public GameObject targetSliderOject;
@@ -36,6 +36,7 @@ public class Alchemist : MonoBehaviour {
 		LightTimer = new Timer(light_time);
 		PauseTimer.startTimer();
 		sr = GetComponent<SpriteRenderer> ();
+		initialx = this.transform.position.x;
 	}
 	
 	// Update is called once per frame
@@ -48,13 +49,13 @@ public class Alchemist : MonoBehaviour {
 
 		if (player.getposition ().x < pos.x) {
 			sr.flipX = false;
-			if (player.getposition ().y < 6) {
+			if (player.getposition ().y < 6 && pos.x>(initialx-12) && pos.x<=initialx) {
 				transform.Translate (Vector2.left * speed / 10);
 			}
 		}
 		if (player.getposition ().x > pos.x) {
 			sr.flipX = true;
-			if (player.getposition ().y < 6) {
+			if (player.getposition ().y < 6 && pos.x>(initialx-12) && pos.x<=initialx) {
 				transform.Translate (Vector2.right * speed / 10);
 			}
 		}

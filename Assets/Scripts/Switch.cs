@@ -43,8 +43,6 @@ public class Switch : MonoBehaviour {
 		Debug.Log ("Switch Target Hit");
 		if (!targetSwitch && !switchOn && coll.transform.gameObject.name == "Player" && Input.GetKeyDown(KeyCode.E)) {
 			switchOn = true;
-			anim.CrossFade ("turnon", 0f);
-			platform.color = new Color (255f, 0f, 0f, 255f);
 			Debug.Log ("Switch Pressed");
 			turnOnMechanisms ();
 		}

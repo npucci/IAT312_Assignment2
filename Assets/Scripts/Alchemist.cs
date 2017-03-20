@@ -10,6 +10,7 @@ public class Alchemist : MonoBehaviour {
 	private Health healthManager;
 	public GameObject background_before;
 
+	public float speed;
 	public GameObject FlowerPrefabs;
 	public Transform FlowerInstantiate;
 	public GameObject targetSliderOject;
@@ -17,6 +18,9 @@ public class Alchemist : MonoBehaviour {
 	public GameObject FireballPrefabs;
 	public Transform FireballInstantiatePoint;
 	public float pause_time,attack_time,light_time;
+	public PlayerController player;
+	private Vector3 pos;
+	private SpriteRenderer sr;
 
 	
 
@@ -31,16 +35,32 @@ public class Alchemist : MonoBehaviour {
 		AttackTimer = new Timer(attack_time);
 		LightTimer = new Timer(light_time);
 		PauseTimer.startTimer();
-
+		sr = GetComponent<SpriteRenderer> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		pos = this.transform.position;
 		PauseTimer.updateTimer (Time.deltaTime);
 		AttackTimer.updateTimer (Time.deltaTime);
 		LightTimer.updateTimer (Time.deltaTime);
 
 
+		if (player.getposition ().x < pos.x) {
+			sr.flipX = false;
+			if (player.getposition ().y < 6) {
+				transform.Translate (Vector2.left * speed / 10);
+			}
+		}
+		if (player.getposition ().x > pos.x) {
+			sr.flipX = true;
+			if (player.getposition ().y < 6) {
+				transform.Translate (Vector2.right * speed / 10);
+			}
+		}
+
+
+		//For the pause and the light 
 		if(wait && PauseTimer.stopped ()){
 				isattacking = true;
 				wait = false; 

@@ -16,49 +16,55 @@ public class Alchemist : MonoBehaviour {
 
 	public GameObject FireballPrefabs;
 	public Transform FireballInstantiatePoint;
-	public float interval;
-	public float fireRate;
+	public float pause_time,attack_time,light_time;
+
 	
 
-	public Timer PauseTimer;
+	public Timer PauseTimer,AttackTimer,LightTimer;
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();
 		healthManager = GetComponent<Health> ();
 		isattacking = false;
 		wait = true;
+		PauseTimer = new Timer(pause_time);
+		AttackTimer = new Timer(attack_time);
+		LightTimer = new Timer(light_time);
 		PauseTimer.startTimer();
-		PauseTimer = new Timer(interval);
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		PauseTimer.updateTimer (Time.deltaTime);
-			
+		AttackTimer.updateTimer (Time.deltaTime);
+		LightTimer.updateTimer (Time.deltaTime);
+
+
 		if(wait && PauseTimer.stopped ()){
 				isattacking = true;
 				wait = false; 
+				AttackTimer.startTimer();
+				anim.CrossFade ("attack", 0f);
+				GameObject.Find ("Light").GetComponent<Light> ().intensity=1.3f;
 			}
-
-		if (isattacking) {
-			anim.CrossFade ("attack", 0f);
-
-		} 
-		else {
-			anim.CrossFade ("idle", 0f);
+		if (!wait && AttackTimer.stopped ()) {
+			isattacking = false;
+			wait = true; 
+			PauseTimer.startTimer();
+			anim.CrossFade ("Idle", 0f);
+			LightTimer.startTimer();
 		}
+		if (wait && LightTimer.stopped ()) {
+			GameObject.Find ("Light").GetComponent<Light> ().intensity=3.0f;
+		}
+
+
 		if(healthManager.dead()) {
 			Instantiate(FlowerPrefabs, FlowerInstantiate.transform.position, FlowerInstantiate.rotation);
 			Destroy (background_before);
 			targetSliderOject.SetActive (false);
 			Destroy(gameObject);
-		}
-	}
-	void FixedUpdate() {
-		if (wait == false) {
-			PauseTimer.startTimer();
-			isattacking = false;
-			wait = true;
 		}
 	}
 

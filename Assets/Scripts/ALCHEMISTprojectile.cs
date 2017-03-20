@@ -9,10 +9,12 @@ public class ALCHEMISTprojectile : MonoBehaviour {
 	public Alchemist chemist;
 
 	public float fireRate;
+	public float interval;
 
 	public Timer fireTimer;
 
 	public bool fire = false;
+	public bool ifattack = false;
 
 	// Use this for initialization
 	void Start () {
@@ -21,11 +23,13 @@ public class ALCHEMISTprojectile : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		fire = chemist.iffire();
+		ifattack = chemist.iffire();
 
-		fireTimer.updateTimer(Time.deltaTime);
-		if (!fire && fireTimer.stopped()) {
-			fire = true;
+		fireTimer.updateTimer(Time.deltaTime*interval);
+		if (ifattack) {
+			if (!fire && fireTimer.stopped ()) {
+				fire = true;
+			}
 		}
 
 		FireProjectile();
